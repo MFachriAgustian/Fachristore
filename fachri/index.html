@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Store Top Up Game</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #003c80;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px;
+      flex-wrap: wrap;
+    }
+    .game-card {
+      width: 250px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .game-card:hover {
+      transform: scale(1.05);
+    }
+    .game-card img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .game-name {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Store Top Up Game</h1>
+    <p>Klik game favoritmu untuk mulai top up</p>
+  </header>
+
+  <div class="container">
+    <a href="MLBB.html?game=mlbb" class="game-card">
+      <img src="MLBB.png" alt="MLBB">
+      <div class="game-name">Mobile Legends</div>
+    </a>
+
+    <a href="FREEFIRE.html?game=ff" class="game-card">
+      <img src="efef.png" alt="Free Fire">
+      <div class="game-name">Free Fire</div>
+    </a>
+
+    <a href="PUBG.html?game=pubg" class="game-card">
+      <img src="PUBG.png" alt="PUBG Mobile">
+      <div class="game-name">PUBG Mobile</div>
+    </a>
+  </div>
+</body>
+</html>
