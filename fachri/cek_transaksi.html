@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cek Transaksi - Fachri Store</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #fff;
+      background-image: radial-gradient(circle at 20% 20%, rgba(191, 160, 52, 0.08) 0%, transparent 25%),
+        radial-gradient(circle at 80% 60%, rgba(191, 160, 52, 0.05) 0%, transparent 30%);
+    }
+
+    header {
+      background-color: #000;
+      padding: 24px 16px;
+      text-align: center;
+      border-bottom: 4px solid #bfa034;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: #fff;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      background: #111;
+      padding: 32px 24px;
+      border-radius: 12px;
+      box-shadow: 0 0 16px rgba(191, 160, 52, 0.2);
+    }
+
+    .container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #f5e7c1;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #ccc;
+    }
+
+    input {
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: none;
+      background: #222;
+      color: #fff;
+    }
+
+    button {
+      padding: 12px;
+      background: #bfa034;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #e0c146;
+    }
+
+    .result {
+      margin-top: 24px;
+      padding: 16px;
+      background: #222;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .result p {
+      margin: 8px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Cek Transaksi</h1>
+  </header>
+
+  <div class="container">
+    <h2>Masukkan ID Transaksi</h2>
+    <form id="cekForm">
+      <label for="transaksiId">ID Transaksi:</label>
+      <input type="text" id="transaksiId" name="transaksiId" required />
+      <button type="submit">Cek Sekarang</button>
+    </form>
+
+    <div class="result" id="resultBox">
+      <p><strong>Status:</strong> <span id="status">Diproses</span></p>
+      <p><strong>Game:</strong> <span id="game">Mobile Legends</span></p>
+      <p><strong>Jumlah:</strong> <span id="jumlah">86 Diamonds</span></p>
+      <p><strong>Tanggal:</strong> <span id="tanggal">30 Mei 2025</span></p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("cekForm");
+    const resultBox = document.getElementById("resultBox");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const id = document.getElementById("transaksiId").value;
+
+      // Simulasi respons data (aslinya dari database/server)
+      if (id === "123456") {
+        document.getElementById("status").textContent = "Sukses";
+        document.getElementById("game").textContent = "Valorant";
+        document.getElementById("jumlah").textContent = "470 VP";
+        document.getElementById("tanggal").textContent = "29 Mei 2025";
+      } else {
+        document.getElementById("status").textContent = "Tidak ditemukan";
+        document.getElementById("game").textContent = "-";
+        document.getElementById("jumlah").textContent = "-";
+        document.getElementById("tanggal").textContent = "-";
+      }
+
+      resultBox.style.display = "block";
+    });
+  </script>
+
+</body>
+
+</html>
