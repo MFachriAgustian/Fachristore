@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fachri Store Top Up Game</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      background-image: radial-gradient(circle at 20% 20%, rgba(191, 160, 52, 0.08) 0%, transparent 25%),
+        radial-gradient(circle at 80% 60%, rgba(191, 160, 52, 0.05) 0%, transparent 30%);
+      background-repeat: no-repeat;
+      color: white;
+    }
+
+    header {
+      background: #000;
+      color: #fff;
+      padding: 32px 20px 24px 20px;
+      text-align: center;
+      border-bottom: 4px solid #bfa034;
+      border-radius: 0 0 16px 16px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      text-shadow: 0 1px 8px rgba(255, 215, 0, 0.2);
+    }
+
+    header p {
+      margin: 8px 0 16px;
+      font-size: 1.1rem;
+      color: #f5e7c1;
+    }
+
+    header button {
+      background: #ffcc00;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #000;
+    }
+
+    .navbar {
+      background: #000000;
+      padding: 12px 0;
+      text-align: center;
+    }
+
+    .navbar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navbar ul li {
+      display: inline-block;
+      margin: 0 20px;
+    }
+
+    .navbar ul li a {
+      color: #f5e7c1;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .navbar ul li a:hover {
+      color: #fff700;
+    }
+
+    .swiper-container {
+      padding: 32px 0;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+    }
+
+    .swiper {
+      width: 90%;
+    }
+
+    .swiper-slide {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(255, 255, 0, 0.2);
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+      color: yellow;
+    }
+
+    .swiper-pagination-bullet {
+      background: yellow;
+      opacity: 0.7;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #fff700;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 40px 20px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .game-card {
+      background: #fff;
+      color: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 24px rgba(255, 215, 0, 0.2);
+    }
+
+    .game-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+
+    .game-name {
+      padding: 12px;
+      font-size: 1.1rem;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #authModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.75);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    #authModal .modal-content {
+      background: #111;
+      padding: 32px;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 400px;
+      color: white;
+      position: relative;
+    }
+
+    #authModal input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #222;
+      color: #fff;
+    }
+
+    #authModal button {
+      width: 100%;
+      padding: 12px;
+      background: #ffcc00;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #authModal .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 18px;
+      cursor: pointer;
+      color: #ffcc00;
+    }
+
+    #authModal a {
+      color: #ffcc00;
+      text-decoration: none;
+      display: block;
+      margin-top: 16px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Fachri Store Top Up Game</h1>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="cek_transaksi.html">Cek Transaksi</a></li>
+      </ul>
+    </nav>
+    <p>Klik game favoritmu untuk mulai top up</p>
+    <button onclick="openLoginModal()">Masuk / Daftar</button>
+  </header>
+
+  <section class="swiper-container">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="slide1.png" alt="Promo Slide 1"></div>
+        <div class="swiper-slide"><img src="slide2.png" alt="Promo Slide 2"></div>
+        <div class="swiper-slide"><img src="slide3.png" alt="Promo Slide 3"></div>
+        <div class="swiper-slide"><img src="slide4.png" alt="Promo Slide 4"></div>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <div class="container">
+    <a href="MLBB.html?game=mlbb" class="game-card"><img src="MLBB.png" alt="MLBB"><div class="game-name">Mobile Legends</div></a>
+    <a href="FREEFIRE.html?game=ff" class="game-card"><img src="efef.png" alt="Free Fire"><div class="game-name">Free Fire</div></a>
+    <a href="PUBG.html?game=pubg" class="game-card"><img src="PUBG.png" alt="PUBG"><div class="game-name">PUBG Mobile</div></a>
+    <a href="Genshin.html?game=genshin" class="game-card"><img src="kikir.png" alt="Genshin Impact"><div class="game-name">Genshin Impact</div></a>
+    <a href="Valorant.html?game=valorant" class="game-card"><img src="valorant.png" alt="Valorant"><div class="game-name">Valorant</div></a>
+    <a href="CODM.html?game=codm" class="game-card"><img src="codm.png" alt="COD Mobile"><div class="game-name">COD Mobile</div></a>
+    <a href="Arena.html?game=arena" class="game-card"><img src="arena.png" alt="Arena of Valor"><div class="game-name">Arena of Valor</div></a>
+    <a href="Honkai.html?game=honkai" class="game-card"><img src="honkai.png" alt="Honkai Impact"><div class="game-name">Honkai Impact</div></a>
+    <a href="Roblox.html?game=roblox" class="game-card"><img src="roblox.png" alt="Roblox"><div class="game-name">Roblox</div></a>
+  </div>
+
+  <div id="authModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle">Masuk</h2>
+      <form id="authForm">
+        <label>Email:</label>
+        <input type="email" required />
+        <label id="nameLabel" style="display:none;">Nama:</label>
+        <input type="text" id="nameInput" style="display:none;" />
+        <label>Kata Sandi:</label>
+        <input type="password" required />
+        <button type="submit">Lanjut</button>
+      </form>
+      <a href="#" onclick="toggleForm(event)">Belum punya akun? Daftar</a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper(".swiper", {
+      loop: true,
+      grabCursor: true,
+      spaceBetween: 30,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+
+    const modal = document.getElementById("authModal");
+    const nameInput = document.getElementById("nameInput");
+    const nameLabel = document.getElementById("nameLabel");
+    const modalTitle = document.getElementById("modalTitle");
+
+    let isRegister = false;
+
+    function openLoginModal() {
+      modal.style.display = "flex";
+      isRegister = false;
+      nameInput.style.display = "none";
+      nameLabel.style.display = "none";
+      modalTitle.innerText = "Masuk";
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    function toggleForm(event) {
+      event.preventDefault();
+      isRegister = !isRegister;
+      if (isRegister) {
+        nameInput.style.display = "block";
+        nameLabel.style.display = "block";
+        modalTitle.innerText = "Daftar";
+        event.target.innerText = "Sudah punya akun? Masuk";
+      } else {
+        nameInput.style.display = "none";
+        nameLabel.style.display = "none";
+        modalTitle.innerText = "Masuk";
+        event.target.innerText = "Belum punya akun? Daftar";
+      }
+    }
+  </script>
+</body>
+</html>
