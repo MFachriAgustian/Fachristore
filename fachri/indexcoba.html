@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=1200" />
   <title>Fachri Store Top Up Game</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
@@ -92,8 +92,7 @@
     }
 
     .swiper {
-      width: 100%;
-      max-width: 1000px;
+      width: 90%;
     }
 
     .swiper-slide {
@@ -157,7 +156,9 @@
       aspect-ratio: 16 / 9;
       object-fit: cover;
       border-radius: 16px 16px 0 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
       background: #f1f5f9;
+      transition: filter 0.2s;
     }
 
     .game-card:hover img {
@@ -170,18 +171,8 @@
       font-weight: bold;
       font-size: 1.18rem;
       color: #02244b;
-    }
-
-    @media (max-width: 900px) {
-      .container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 4px rgba(191, 160, 52, 0.07);
     }
 
     #authModal {
@@ -244,6 +235,7 @@
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1>Fachri Store Top Up Game</h1>
