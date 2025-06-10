@@ -7,35 +7,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
     body {
-      .navbar {
-  background: #000000;
-  padding: 12px 0;
-  text-align: center;
-
-}
-
-.navbar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.navbar ul li {
-  display: inline-block;
-  margin: 0 20px;
-}
-
-.navbar ul li a {
-  color: #f5e7c1;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: color 0.2s;
-}
-
-.navbar ul li a:hover {
-  color: #fff700;
-}
       font-family: 'Segoe UI', sans-serif;
       background: #000;
       margin: 0;
@@ -45,6 +16,35 @@
         radial-gradient(circle at 80% 60%, rgba(191, 160, 52, 0.05) 0%, transparent 30%);
       background-repeat: no-repeat;
       background-size: cover;
+    }
+
+    .navbar {
+      background: #000000;
+      padding: 12px 0;
+      text-align: center;
+    }
+
+    .navbar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navbar ul li {
+      display: inline-block;
+      margin: 0 20px;
+    }
+
+    .navbar ul li a {
+      color: #f5e7c1;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .navbar ul li a:hover {
+      color: #fff700;
     }
 
     header {
@@ -92,7 +92,8 @@
     }
 
     .swiper {
-      width: 90%;
+      width: 100%;
+      max-width: 1000px;
     }
 
     .swiper-slide {
@@ -156,9 +157,7 @@
       aspect-ratio: 16 / 9;
       object-fit: cover;
       border-radius: 16px 16px 0 0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
       background: #f1f5f9;
-      transition: filter 0.2s;
     }
 
     .game-card:hover img {
@@ -171,14 +170,11 @@
       font-weight: bold;
       font-size: 1.18rem;
       color: #02244b;
-      letter-spacing: 0.5px;
-      text-shadow: 0 1px 4px rgba(191, 160, 52, 0.07);
     }
 
     @media (max-width: 900px) {
       .container {
         grid-template-columns: repeat(2, 1fr);
-        padding: 32px 20px;
       }
     }
 
@@ -188,7 +184,6 @@
       }
     }
 
-    /* Modal Styles */
     #authModal {
       display: none;
       position: fixed;
@@ -249,22 +244,19 @@
     }
   </style>
 </head>
-
 <body>
   <header>
     <h1>Fachri Store Top Up Game</h1>
     <nav class="navbar">
-  <ul>
-    <li><a href="index.html">Beranda</a></li>
-    <li><a href="cek_transaksi.html">Cek Transaksi</a></li>
-
-  </ul>
-</nav>
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="cek_transaksi.html">Cek Transaksi</a></li>
+      </ul>
+    </nav>
     <p>Klik game favoritmu untuk mulai top up</p>
     <button onclick="openLoginModal()">Masuk / Daftar</button>
   </header>
 
-  <!-- SLIDER -->
   <section class="swiper-container">
     <div class="swiper">
       <div class="swiper-wrapper">
@@ -279,20 +271,18 @@
     </div>
   </section>
 
-<a href="cek_transaksi.html" class="transaksi">Transaksi</a>
   <div class="container">
     <a href="MLBB.html?game=mlbb" class="game-card"><img src="MLBB.png" alt="MLBB"><div class="game-name">Mobile Legends</div></a>
     <a href="FREEFIRE.html?game=ff" class="game-card"><img src="efef.png" alt="Free Fire"><div class="game-name">Free Fire</div></a>
     <a href="PUBG.html?game=pubg" class="game-card"><img src="PUBG.png" alt="PUBG"><div class="game-name">PUBG Mobile</div></a>
-    <a href="Genshin.html?game=genshin" class="game-card"><img src="kikir.png" alt="Genshin Impact"><div class="game-name">Genshin Impact</div></a>
-    <a href="Valorant.html?game=valorant" class="game-card"><img src="valorant.png" alt="Valorant"><div class="game-name">Valorant</div></a>
+    <a href="genshin.html?game=genshin" class="game-card"><img src="kikir.png" alt="Genshin Impact"><div class="game-name">Genshin Impact</div></a>
+    <a href="valorant.html?game=valorant" class="game-card"><img src="valorant.png" alt="Valorant"><div class="game-name">Valorant</div></a>
     <a href="CODM.html?game=codm" class="game-card"><img src="codm.png" alt="COD Mobile"><div class="game-name">COD Mobile</div></a>
-    <a href="Arena.html?game=arena" class="game-card"><img src="arena.png" alt="Arena of Valor"><div class="game-name">Arena of Valor</div></a>
-    <a href="Honkai.html?game=honkai" class="game-card"><img src="honkai.png" alt="Honkai Impact"><div class="game-name">Honkai Impact</div></a>
-    <a href="Roblox.html?game=roblox" class="game-card"><img src="roblox.png" alt="Roblox"><div class="game-name">Roblox</div></a>
+    <a href="arena.html?game=arena" class="game-card"><img src="arena.png" alt="Arena of Valor"><div class="game-name">Arena of Valor</div></a>
+    <a href="honkai.html?game=honkai" class="game-card"><img src="honkai.png" alt="Honkai Impact"><div class="game-name">Honkai Impact</div></a>
+    <a href="roblox.html?game=roblox" class="game-card"><img src="roblox.png" alt="Roblox"><div class="game-name">Roblox</div></a>
   </div>
 
-  <!-- MODAL LOGIN/DAFTAR -->
   <div id="authModal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -310,7 +300,6 @@
     </div>
   </div>
 
-  <!-- SCRIPT -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
     const swiper = new Swiper(".swiper", {
