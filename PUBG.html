@@ -3,218 +3,561 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fachri Top Up - PUBG</title>
+  <title>Fachri Top Up - Mobile Legends</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #474747;
+    :root {
+      --primary: #FFD700;
+      --primary-dark: #BF9B30;
+      --secondary: #121212;
+      --accent: #FF5F1F;
+      --text: #FFFFFF;
+      --text-dark: #2C3E50;
+      --card-bg: #1E1E1E;
+      --input-bg: #2D2D2D;
+      --success: #2ECC71;
+    }
+
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
+
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+      min-height: 100vh;
+      color: var(--text);
+      padding: 20px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 215, 0, 0.1);
+      transform: translateX(-5px);
+    }
+
     .container {
       max-width: 600px;
-      margin: 30px auto;
+      margin: 0 auto;
       padding: 30px;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(77, 73, 46, 0.1);
+      background: rgba(30, 30, 30, 0.9);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      backdrop-filter: blur(5px);
     }
+
     .header {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
       gap: 15px;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
+      position: relative;
     }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      border-radius: 2px;
+    }
+
     .product-logo {
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
       object-fit: contain;
+      border-radius: 16px;
+      border: 2px solid var(--primary);
+      padding: 5px;
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+      transition: all 0.3s ease;
     }
+
+    .product-logo:hover {
+      transform: scale(1.05) rotate(5deg);
+    }
+
     h2 {
       text-align: center;
-      color: #2c3e50;
+      color: var(--primary);
+      font-size: 1.8rem;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
     }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
     label {
       display: block;
-      margin-top: 15px;
+      margin-bottom: 8px;
       font-weight: 600;
+      color: var(--text);
     }
+
+    .input-wrapper {
+      position: relative;
+    }
+
     input,
     select {
       width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      padding: 14px 15px;
+      margin-top: 5px;
+      border-radius: 10px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      background: var(--input-bg);
+      color: var(--text);
+      font-size: 1rem;
+      transition: all 0.3s ease;
     }
-    .uc-options {
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+
+    .input-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+    }
+
+    .diamond-options {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-top: 10px;
+      gap: 15px;
+      margin-top: 15px;
     }
-    .uc-options input[type='radio'] {
+
+    .diamond-options input[type='radio'] {
       display: none;
     }
-    .uc-options label {
+
+    .diamond-option {
       display: flex;
       align-items: center;
-      gap: 10px;
-      border: 1px solid #ccc;
-      padding: 10px;
-      border-radius: 8px;
+      gap: 12px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      padding: 15px;
+      border-radius: 12px;
       text-align: left;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
+      background: rgba(30, 30, 30, 0.7);
+      position: relative;
+      overflow: hidden;
     }
-    .uc-options input[type='radio']:checked + label {
-      background: #f39c12;
+
+    .diamond-option::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+      transition: 0.5s;
+    }
+
+    .diamond-option:hover::before {
+      left: 100%;
+    }
+
+    .diamond-options input[type='radio']:checked + .diamond-option {
+      background: rgba(255, 215, 0, 0.1);
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    }
+
+    .diamond-options input[type='radio']:checked + .diamond-option .diamond-icon {
+      transform: scale(1.2) rotate(15deg);
+    }
+
+    .diamond-icon {
+      width: 30px;
+      height: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .diamond-info {
+      flex: 1;
+    }
+
+    .diamond-amount {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .diamond-price {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--accent);
       color: white;
-      border-color: #d35400;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      transform: rotate(15deg);
     }
-    .uc-icon {
-      width: 24px;
-      height: 24px;
-    }
+
     .payment-options {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
       gap: 15px;
-      flex-wrap: wrap;
-      margin-top: 10px;
+      margin-top: 15px;
     }
+
     .payment-options input[type='radio'] {
       display: none;
     }
-    .payment-options label {
+
+    .payment-option {
       cursor: pointer;
-      padding: 5px;
       border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
       border: 2px solid transparent;
-      transition: 0.2s;
     }
-    .payment-options img {
-      width: 80px;
+
+    .payment-option img {
+      width: 100%;
       height: auto;
+      display: block;
+      border-radius: 8px;
     }
-    .payment-options input[type='radio']:checked + label {
-      border-color: #f39c12;
-      background: #fff7e6;
+
+    .payment-options input[type='radio']:checked + .payment-option {
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+      transform: translateY(-5px);
     }
+
+    .payment-option::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .payment-options input[type='radio']:checked + .payment-option::after {
+      opacity: 1;
+    }
+
     button {
       width: 100%;
-      padding: 12px;
-      margin-top: 25px;
-      background: #f39c12;
+      padding: 16px;
+      margin-top: 30px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       border: none;
-      color: white;
-      font-size: 16px;
+      color: #000;
+      font-size: 1.1rem;
       font-weight: bold;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
     }
+
     button:hover {
-      background: #d35400;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    button:hover::after {
+      left: 100%;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 25px 20px;
+      }
+      
+      .diamond-options {
+        grid-template-columns: 1fr;
+      }
+      
+      .payment-options {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px 15px;
+      }
+      
+      .product-logo {
+        width: 70px;
+        height: 70px;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div style="text-align:left; margin-top: 20px;">
-  <a href="index.html" style="color:#3498db; text-decoration:none; font-weight:bold;">
-    ← Kembali
-  </a>
-</div>
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+    </a>
+
     <div class="header">
       <img src="PUBG.png" alt="PUBG Logo" class="product-logo" />
-      <h2>Fachri Top Up - PUBG</h2>
+      <h2>Top Up PUBG Mobile</h2>
     </div>
 
-    <label for="pubgid">ID Pengguna</label>
-    <input type="text" id="pubgid" placeholder="Masukkan ID PUBG" />
-
-    <label>Pilih Jumlah UC</label>
-    <div class="uc-options">
-      <input type="radio" name="uc" id="u1" value="60 UC - Rp10.000" />
-      <label for="u1">
-        <img src="uc.png" class="uc-icon" alt="UC Icon" />
-        60 UC - Rp10.000
-      </label>
-
-      <input type="radio" name="uc" id="u2" value="300 UC - Rp50.000" />
-      <label for="u2">
-        <img src="uc.png" class="uc-icon" alt="UC Icon" />
-        300 UC - Rp50.000
-      </label>
-
-      <input type="radio" name="uc" id="u3" value="660 UC - Rp100.000" />
-      <label for="u3">
-        <img src="uc.png" class="uc-icon" alt="UC Icon" />
-        660 UC - Rp100.000
-      </label>
-
-      <input type="radio" name="uc" id="u4" value="1330 UC - Rp200.000" />
-      <label for="u4">
-        <img src="uc.png" class="uc-icon" alt="UC Icon" />
-        1330 UC - Rp200.000
-      </label>
+    <div class="form-group">
+      <label for="mlid">ID Pengguna</label>
+      <div class="input-wrapper">
+        <input type="text" id="ffid" placeholder="Masukkan UID Anda" />
+        <i class="fas fa-user input-icon"></i>
+      </div>
     </div>
 
-    <label for="jumlah">Jumlah Pembelian</label>
-    <input type="number" id="jumlah" min="1" value="1" />
+    <div class="form-group">
+      <label>Pilih Jumlah UC</label>
+      <div class="diamond-options">
+        <input type="radio" name="diamond" id="d1" value="60 UC - Rp15.000" />
+        <label for="d1" class="diamond-option">
+          <img src="uc.png" class="diamond-icon" alt="Diamond Icon" />
+          <div class="diamond-info">
+            <div class="diamond-amount">60 UC</div>
+            <div class="diamond-price">Rp15.000</div>
+          </div>
+          <div class="badge">HOT</div>
+        </label>
 
-    <label for="whatsapp">Nomor WhatsApp</label>
-    <input type="tel" id="whatsapp" placeholder="08xxxxxxxxxx" />
+        <input type="radio" name="diamond" id="d2" value="300 UC - Rp75.000" />
+        <label for="d2" class="diamond-option">
+          <img src="uc.png" class="diamond-icon" alt="Diamond Icon" />
+          <div class="diamond-info">
+            <div class="diamond-amount">300 UC</div>
+            <div class="diamond-price">Rp75.000</div>
+          </div>
+        </label>
 
-    <label for="promo">Kode Promo (Opsional)</label>
-    <input type="text" id="promo" placeholder="Masukkan kode promo jika ada" />
+        <input type="radio" name="diamond" id="d3" value="880 CP - Rp150.000" />
+        <label for="d3" class="diamond-option">
+          <img src="uc.png" class="diamond-icon" alt="Diamond Icon" />
+          <div class="diamond-info">
+            <div class="diamond-amount">660 UC</div>
+            <div class="diamond-price">Rp150.000</div>
+          </div>
+        </label>
 
-    <label>Pilih Metode Pembayaran</label>
-    <div class="payment-options">
-      <input type="radio" name="metode" id="dana" value="Dana" />
-      <label for="dana"><img src="dana.png" alt="Dana" /></label>
-
-      <input type="radio" name="metode" id="ovo" value="OVO" />
-      <label for="ovo"><img src="ovo.png" alt="OVO" /></label>
-
-      <input type="radio" name="metode" id="gopay" value="Gopay" />
-      <label for="gopay"><img src="gopay.png" alt="Gopay" /></label>
-
-      <input type="radio" name="metode" id="bank" value="Bank Transfer" />
-      <label for="bank"><img src="bank.png" alt="Bank" /></label>
+        <input type="radio" name="diamond" id="d4" value="1330 UC - Rp250.000" />
+        <label for="d4" class="diamond-option">
+          <img src="uc.png" class="diamond-icon" alt="Diamond Icon" />
+          <div class="diamond-info">
+            <div class="diamond-amount">1330 UC</div>
+            <div class="diamond-price">Rp250.000</div>
+          </div>
+          <div class="badge">BEST</div>
+        </label>
+      </div>
     </div>
 
-    <button onclick="prosesTopUp()">Bayar Sekarang</button>
+    <div class="form-group">
+      <label for="jumlah">Jumlah Pembelian</label>
+      <div class="input-wrapper">
+        <input type="number" id="jumlah" min="1" value="1" />
+        <i class="fas fa-shopping-cart input-icon"></i>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="whatsapp">Nomor WhatsApp</label>
+      <div class="input-wrapper">
+        <input type="tel" id="whatsapp" placeholder="08xxxxxxxxxx" />
+        <i class="fab fa-whatsapp input-icon"></i>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="promo">Kode Promo (Opsional)</label>
+      <div class="input-wrapper">
+        <input type="text" id="promo" placeholder="Masukkan kode promo jika ada" />
+        <i class="fas fa-tag input-icon"></i>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Pilih Metode Pembayaran</label>
+      <div class="payment-options">
+        <input type="radio" name="metode" id="dana" value="Dana" />
+        <label for="dana" class="payment-option"><img src="dana.png" alt="Dana" /></label>
+
+        <input type="radio" name="metode" id="ovo" value="OVO" />
+        <label for="ovo" class="payment-option"><img src="ovo.png" alt="OVO" /></label>
+
+        <input type="radio" name="metode" id="gopay" value="Gopay" />
+        <label for="gopay" class="payment-option"><img src="gopay.png" alt="Gopay" /></label>
+
+        <input type="radio" name="metode" id="bank" value="Bank Transfer" />
+        <label for="bank" class="payment-option"><img src="bank.png" alt="Bank" /></label>
+
+        <input type="radio" name="metode" id="qris" value="QRIS" />
+        <label for="qris" class="payment-option"><img src="qris.png" alt="QRIS" /></label>
+
+      </div>
+    </div>
+
+    <button onclick="prosesTopUp()">
+      <i class="fas fa-bolt"></i> Bayar Sekarang
+    </button>
   </div>
 
   <script>
     function prosesTopUp() {
-      const id = document.getElementById('pubgid').value;
+      const id = document.getElementById('mlid').value;
       const jumlah = document.getElementById('jumlah').value;
       const whatsapp = document.getElementById('whatsapp').value;
       const promo = document.getElementById('promo').value;
-      const ucRadio = document.querySelector('input[name="uc"]:checked');
+      const diamondRadio = document.querySelector('input[name="diamond"]:checked');
       const metodeRadio = document.querySelector('input[name="metode"]:checked');
 
-      if (!id || !ucRadio || !jumlah || !whatsapp || !metodeRadio) {
-        alert("Harap lengkapi semua data yang wajib diisi.");
+      if (!id || !diamondRadio || !jumlah || !whatsapp || !metodeRadio) {
+        showAlert('error', 'Harap lengkapi semua data yang wajib diisi.');
         return;
       }
 
-      alert(`
-✅ Ringkasan Top Up:
-- Game: PUBG
-- ID: ${id}
-- Paket: ${ucRadio.value}
-- Jumlah: ${jumlah}
-- WhatsApp: ${whatsapp}
-- Kode Promo: ${promo || '-'}
-- Pembayaran: ${metodeRadio.value}
+      const summary = `
+        <div style="text-align:left; margin-bottom:20px;">
+          <h3 style="color:var(--primary); border-bottom:1px solid rgba(255,215,0,0.3); padding-bottom:10px; margin-bottom:15px;">Ringkasan Top Up</h3>
+          <p><strong>Game:</strong> Mobile Legends</p>
+          <p><strong>ID:</strong> ${id}</p>
+          <p><strong>Paket:</strong> ${diamondRadio.value}</p>
+          <p><strong>Jumlah:</strong> ${jumlah}</p>
+          <p><strong>WhatsApp:</strong> ${whatsapp}</p>
+          <p><strong>Kode Promo:</strong> ${promo || '-'}</p>
+          <p><strong>Pembayaran:</strong> ${metodeRadio.value}</p>
+        </div>
+        <p style="color:var(--primary); font-weight:bold;">Lanjutkan ke pembayaran...</p>
+      `;
 
-Lanjutkan ke pembayaran...
-      `);
+      showAlert('success', summary);
     }
+
+    function showAlert(type, message) {
+      const alertBox = document.createElement('div');
+      alertBox.style.position = 'fixed';
+      alertBox.style.top = '20px';
+      alertBox.style.left = '50%';
+      alertBox.style.transform = 'translateX(-50%)';
+      alertBox.style.padding = '20px';
+      alertBox.style.borderRadius = '12px';
+      alertBox.style.color = 'white';
+      alertBox.style.zIndex = '1000';
+      alertBox.style.maxWidth = '90%';
+      alertBox.style.width = '400px';
+      alertBox.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+      alertBox.style.animation = 'fadeIn 0.3s ease-out';
+      alertBox.innerHTML = `
+        <div style="display:flex; align-items:center; gap:15px; margin-bottom:15px;">
+          <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" 
+             style="font-size:2rem; color:${type === 'success' ? 'var(--success)' : 'var(--accent)'}"></i>
+          <h3 style="margin:0;">${type === 'success' ? 'Berhasil!' : 'Error!'}</h3>
+        </div>
+        ${message}
+        <button onclick="this.parentElement.remove()" 
+                style="margin-top:20px; padding:10px 15px; background:rgba(255,255,255,0.1); 
+                       border:1px solid rgba(255,255,255,0.3); color:white; border-radius:8px; 
+                       cursor:pointer; width:100%;">
+          Tutup
+        </button>
+      `;
+
+      if (type === 'success') {
+        alertBox.style.background = 'rgba(30, 30, 30, 0.95)';
+        alertBox.style.border = '1px solid var(--primary)';
+      } else {
+        alertBox.style.background = 'rgba(46, 30, 30, 0.95)';
+        alertBox.style.border = '1px solid var(--accent)';
+      }
+
+      document.body.appendChild(alertBox);
+
+      if (type === 'success') {
+        setTimeout(() => {
+          alertBox.remove();
+        }, 10000);
+      }
+    }
+
+    // Add animation for form elements
+    document.addEventListener('DOMContentLoaded', () => {
+      const formGroups = document.querySelectorAll('.form-group');
+      
+      formGroups.forEach((group, index) => {
+        group.style.opacity = '0';
+        group.style.transform = 'translateY(20px)';
+        group.style.transition = `all 0.5s ease ${index * 0.1}s`;
+        
+        setTimeout(() => {
+          group.style.opacity = '1';
+          group.style.transform = 'translateY(0)';
+        }, 100);
+      });
+    });
   </script>
 </body>
 </html>
