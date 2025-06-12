@@ -2,142 +2,346 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=1200" />
-  <title>Fachri Store Top Up Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fachri Store | Top Up Game Termurah & Terpercaya</title>
+  <link rel="icon" type="image/png" href="logo.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    :root {
+      --primary: #FFD700;
+      --primary-dark: #BF9B30;
+      --secondary: #121212;
+      --accent: #FF5F1F;
+      --text: #FFFFFF;
+      --text-secondary: #E0E0E0;
+      --card-bg: #1E1E1E;
+      --modal-bg: #1A1A1A;
+      --input-bg: #2D2D2D;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
       background: #000;
-      margin: 0;
-      padding: 0;
       min-height: 100vh;
-      background-image: radial-gradient(circle at 20% 20%, rgba(191, 160, 52, 0.08) 0%, transparent 25%),
-        radial-gradient(circle at 80% 60%, rgba(191, 160, 52, 0.05) 0%, transparent 30%);
-      background-repeat: no-repeat;
-      background-size: cover;
+      color: var(--text);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(191, 160, 52, 0.15) 0%, transparent 25%),
+        radial-gradient(circle at 90% 70%, rgba(191, 160, 52, 0.1) 0%, transparent 30%);
+      background-attachment: fixed;
+      overflow-x: hidden;
     }
 
-    .navbar {
-      background: #000000;
-      padding: 12px 0;
-      text-align: center;
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--secondary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 5px;
     }
 
-    .navbar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .navbar ul li {
-      display: inline-block;
-      margin: 0 20px;
-    }
-
-    .navbar ul li a {
-      color: #f5e7c1;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1rem;
-      transition: color 0.2s;
-    }
-
-    .navbar ul li a:hover {
-      color: #fff700;
-    }
-
+    /* Header Styles */
     header {
-      background: #000;
-      color: #fff;
-      padding: 32px 20px 24px 20px;
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+      padding: 20px 15px;
       text-align: center;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-      border-bottom: 4px solid #bfa034;
-      border-bottom-left-radius: 16px;
-      border-bottom-right-radius: 16px;
-      letter-spacing: 1px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border-bottom: 3px solid var(--primary);
+      position: relative;
+      z-index: 100;
     }
 
-    header h1 {
-      margin: 0 0 8px 0;
-      font-size: 2.3rem;
-      font-weight: 700;
-      text-shadow: 0 1px 6px rgba(191, 160, 52, 0.4);
-    }
-
-    header p {
-      margin: 0;
-      font-size: 1.1rem;
-      color: #f5e7c1;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    header button {
-      margin-top: 16px;
-      background: #ffcc00;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .swiper-container {
-      padding: 40px 0;
-      background-color: #000;
+    .logo-wrapper {
       display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      gap: 15px;
+      position: relative;
+      flex-direction: column;
+    }
+
+    .logo-f {
+      width: 70px;
+      height: 70px;
+      border-radius: 18px;
+      object-fit: contain;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+      border: 2px solid var(--primary);
+      padding: 5px;
+      background: rgba(0, 0, 0, 0.7);
+      transition: all 0.3s ease;
+    }
+
+    .logo-f:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
+    }
+
+    .logo-text {
+      display: flex;
+      font-size: 2rem;
+      font-weight: 800;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+      position: relative;
+      flex-wrap: wrap;
       justify-content: center;
     }
 
+    .logo-text::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      border-radius: 3px;
+    }
+
+    .logo-text .char {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+      color: var(--primary);
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    /* Character animation delays */
+    .logo-text .char:nth-child(1) { animation-delay: 0.1s; }
+    .logo-text .char:nth-child(2) { animation-delay: 0.2s; }
+    .logo-text .char:nth-child(3) { animation-delay: 0.3s; }
+    .logo-text .char:nth-child(4) { animation-delay: 0.4s; }
+    .logo-text .char:nth-child(5) { animation-delay: 0.5s; }
+    .logo-text .char:nth-child(6) { animation-delay: 0.6s; }
+    .logo-text .char:nth-child(7) { animation-delay: 0.7s; }
+    .logo-text .char:nth-child(8) { animation-delay: 0.8s; }
+    .logo-text .char:nth-child(9) { animation-delay: 0.9s; }
+    .logo-text .char:nth-child(10) { animation-delay: 1.0s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .btn-login {
+      margin-top: 15px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #000;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+
+    .btn-login:active {
+      transform: translateY(1px);
+    }
+
+    .btn-login::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn-login:hover::after {
+      left: 100%;
+    }
+
+    /* Navigation */
+    nav {
+      margin-top: 20px;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    nav ul li a:hover {
+      color: var(--primary);
+      background: rgba(255, 215, 0, 0.1);
+    }
+
+    nav ul li a i {
+      font-size: 1rem;
+    }
+
+    nav ul li::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    nav ul li:hover::after {
+      width: 100%;
+    }
+
+    /* Slider Styles */
+    .swiper-container {
+      padding: 20px 0;
+      background: linear-gradient(180deg, #000 0%, #121212 100%);
+      position: relative;
+    }
+
     .swiper {
-      width: 90%;
+      width: 95%;
+      height: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     }
 
     .swiper-slide {
-      width: 680px;
-      border-radius: 20px;
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 0 15px rgba(255, 255, 0, 0.15);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+      transition: transform 0.3s ease;
+      position: relative;
     }
 
     .swiper-slide img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       display: block;
-      border-radius: 20px;
+      border-radius: 15px;
+    }
+
+    .swiper-slide::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      border-radius: 0 0 15px 15px;
     }
 
     .swiper-button-prev,
     .swiper-button-next {
-      color: yellow;
+      display: none !important;
     }
 
     .swiper-pagination-bullet {
-      background: yellow;
+      background: var(--text-secondary);
       opacity: 0.7;
+      width: 10px;
+      height: 10px;
+      transition: all 0.3s ease;
     }
 
     .swiper-pagination-bullet-active {
-      background: #fff700;
+      background: var(--primary);
+      opacity: 1;
+      transform: scale(1.2);
     }
 
+    /* Game Cards */
     .container {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 36px;
-      padding: 48px 20px 40px 20px;
-      max-width: 1200px;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 30px 5%;
+      max-width: 1400px;
       margin: 0 auto;
+    }
+
+    .section-title {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 3px;
     }
 
     .game-card {
       cursor: pointer;
-      transition: transform 0.25s cubic-bezier(.4, 2, .6, 1), box-shadow 0.25s;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(2, 36, 75, 0.10), 0 1.5px 4px rgba(0, 0, 0, 0.03);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       overflow: hidden;
       text-decoration: none;
       border: 2px solid transparent;
@@ -145,117 +349,549 @@
     }
 
     .game-card:hover {
-      transform: translateY(-8px) scale(1.04);
-      box-shadow: 0 16px 32px rgba(191, 160, 52, 0.25), 0 2px 8px rgba(0, 0, 0, 0.1);
-      border-color: #bfa034;
-      z-index: 2;
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(191, 160, 52, 0.3);
+      border-color: var(--primary);
+      z-index: 10;
+    }
+
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .game-card:hover::before {
+      opacity: 1;
     }
 
     .game-card img {
       width: 100%;
       aspect-ratio: 16 / 9;
       object-fit: cover;
-      border-radius: 16px 16px 0 0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-      background: #f1f5f9;
-      transition: filter 0.2s;
+      border-radius: 12px 12px 0 0;
+      transition: all 0.4s ease;
     }
 
     .game-card:hover img {
-      filter: brightness(1.07) saturate(1.2);
+      filter: brightness(1.1) contrast(1.05);
+      transform: scale(1.03);
+    }
+
+    .game-info {
+      padding: 15px;
+      position: relative;
     }
 
     .game-name {
-      text-align: center;
-      margin: 18px 0 16px 0;
-      font-weight: bold;
-      font-size: 1.18rem;
-      color: #02244b;
-      letter-spacing: 0.5px;
-      text-shadow: 0 1px 4px rgba(191, 160, 52, 0.07);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 6px;
+      transition: color 0.3s ease;
     }
 
+    .game-card:hover .game-name {
+      color: var(--primary);
+    }
+
+    .game-price {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .game-badge {
+      position: absolute;
+      top: -12px;
+      right: 15px;
+      background: var(--primary);
+      color: #000;
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-weight: 600;
+      font-size: 0.7rem;
+      box-shadow: 0 3px 8px rgba(255, 215, 0, 0.3);
+    }
+
+    /* Modal Styles */
     #authModal {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.75);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
       justify-content: center;
       align-items: center;
       z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    #authModal.show {
+      display: flex;
+      opacity: 1;
     }
 
     #authModal .modal-content {
-      background: #111;
-      padding: 32px;
-      border-radius: 16px;
+      background: var(--modal-bg);
+      padding: 25px;
+      border-radius: 15px;
       width: 90%;
       max-width: 400px;
       color: white;
       position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    #authModal.show .modal-content {
+      transform: translateY(0);
+    }
+
+    #authModal h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    #authModal label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
     }
 
     #authModal input {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 16px;
+      padding: 10px 12px;
+      margin-bottom: 15px;
       border: none;
-      border-radius: 8px;
-      background: #222;
-      color: #fff;
+      border-radius: 6px;
+      background: var(--input-bg);
+      color: var(--text);
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
     }
 
-    #authModal button {
+    #authModal input:focus {
+      outline: none;
+      border-left: 3px solid var(--primary);
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
+    }
+
+    #authModal button[type="submit"] {
       width: 100%;
       padding: 12px;
-      background: #ffcc00;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       color: #000;
-      font-weight: bold;
+      font-weight: 600;
       border: none;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      margin-top: 8px;
+    }
+
+    #authModal button[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
     }
 
     #authModal .close-btn {
       position: absolute;
       top: 12px;
-      right: 16px;
-      font-size: 18px;
+      right: 15px;
+      font-size: 20px;
       cursor: pointer;
-      color: #ffcc00;
+      color: var(--primary);
+      transition: transform 0.3s ease;
+    }
+
+    #authModal .close-btn:hover {
+      transform: rotate(90deg);
     }
 
     #authModal a {
-      color: #ffcc00;
+      color: var(--primary);
       text-decoration: none;
       display: block;
-      margin-top: 16px;
+      margin-top: 15px;
       text-align: center;
+      transition: color 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    #authModal a:hover {
+      color: var(--text);
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(180deg, #121212 0%, #000 100%);
+      padding: 30px 5%;
+      text-align: center;
+      border-top: 1px solid rgba(255, 215, 0, 0.2);
+      margin-top: 40px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+      text-align: center;
+    }
+
+    .footer-column h3 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 2px;
+      background: var(--primary);
+    }
+
+    .footer-column p, .footer-column a {
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      display: block;
+      transition: color 0.3s ease;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer-column a:hover {
+      color: var(--primary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+      justify-content: center;
+    }
+
+    .social-links a {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: var(--input-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      color: #000;
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+
+    /* Floating Particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(255, 215, 0, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Desktop Styles */
+    @media (min-width: 768px) {
+      header {
+        padding: 30px 20px 20px;
+      }
+      
+      .logo-wrapper {
+        flex-direction: row;
+        margin-bottom: 20px;
+        gap: 20px;
+      }
+      
+      .logo-f {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .logo-text {
+        font-size: 3rem;
+      }
+      
+      .btn-login {
+        margin-top: 20px;
+        padding: 14px 32px;
+        font-size: 1.1rem;
+      }
+      
+      nav ul {
+        gap: 25px;
+      }
+      
+      nav ul li a {
+        font-size: 1.1rem;
+        padding: 8px 12px;
+      }
+      
+      nav ul li a i {
+        font-size: 1.2rem;
+      }
+      
+     .swiper-container {
+  padding: 30px 0;
+  background: linear-gradient(180deg, #000 0%, #121212 100%);
+  position: relative;
+}
+
+.swiper {
+  width: 80%;
+  max-height: 400px; /* Tambahkan max-height */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.swiper-slide {
+  width: 100%;
+  height: auto;
+  max-height: 400px; /* Tambahkan max-height */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: auto; /* Ubah dari 'auto' ke 'cover' */
+  display: block;
+  border-radius: 20px;
+}
+
+    .swiper-slide::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      border-radius: 0 0 20px 20px;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+      color: var(--primary);
+      background: rgba(0, 0, 0, 0.5);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+    }
+
+    .swiper-button-prev:hover,
+    .swiper-button-next:hover {
+      background: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1);
+    }
+
+    .swiper-pagination-bullet {
+      background: var(--text-secondary);
+      opacity: 0.7;
+      width: 12px;
+      height: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: var(--primary);
+      opacity: 1;
+      transform: scale(1.2);
+    }
+      
+      .container {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+        padding: 50px 5%;
+      }
+      
+      .section-title {
+        font-size: 2.2rem;
+        margin-bottom: 25px;
+      }
+      
+      .game-card {
+        border-radius: 16px;
+      }
+      
+      .game-info {
+        padding: 20px;
+      }
+      
+      .game-name {
+        font-size: 1.2rem;
+      }
+      
+      .game-price {
+        font-size: 1.05rem;
+      }
+      
+      #authModal .modal-content {
+        padding: 35px;
+        border-radius: 20px;
+      }
+      
+      #authModal h2 {
+        font-size: 1.8rem;
+      }
+      
+      #authModal input {
+        padding: 12px 15px;
+      }
+      
+      #authModal button[type="submit"] {
+        padding: 14px;
+      }
+      
+      .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        text-align: left;
+        gap: 30px;
+      }
+      
+      .footer-column h3::after {
+        left: 0;
+        transform: none;
+      }
+      
+      .social-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .logo-text {
+        font-size: 3.5rem;
+      }
+      
+      .container {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+      
+      .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
     }
   </style>
 </head>
 
 <body>
+  <!-- Floating Particles Background -->
+  <div class="particles" id="particles"></div>
+
   <header>
-    <h1>Fachri Store Top Up Game</h1>
-    <nav class="navbar">
+    <div class="logo-wrapper">
+      <img src="logo.png" alt="Fachri Store Logo" class="logo-f" />
+      <div class="logo-text">
+        <span class="char">a</span>
+        <span class="char">c</span>
+        <span class="char">h</span>
+        <span class="char">r</span>
+        <span class="char">i</span>
+        <span class="char">S</span>
+        <span class="char">t</span>
+        <span class="char">o</span>
+        <span class="char">r</span>
+        <span class="char">e</span>
+      </div>
+    </div>
+
+    <button class="btn-login" onclick="openLoginModal()">
+      <i class="fas fa-user"></i> Masuk / Daftar
+    </button>
+
+    <nav>
       <ul>
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="cek_transaksi.html">Cek Transaksi</a></li>
+        <li><a href="#"><i class="fas fa-home"></i> Beranda</a></li>
+        <li><a href="#"><i class="fas fa-gamepad"></i> Top Up Game</a></li>
+        <li><a href="cek_transaksi.html"><i class="fas fa-receipt"></i> Cek Transaksi</a></li>
+        <li><a href="contact.html"><i class="fas fa-headset"></i> Kontak</a></li>
+        <li><a href="promo.html"><i class="fas fa-gift"></i> Promo</a></li>
       </ul>
     </nav>
-    <p>Klik game favoritmu untuk mulai top up</p>
-    <button onclick="openLoginModal()">Masuk / Daftar</button>
   </header>
 
+  <!-- Promo Slider -->
   <section class="swiper-container">
     <div class="swiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="slide1.png" alt="Promo Slide 1"></div>
-        <div class="swiper-slide"><img src="slide2.png" alt="Promo Slide 2"></div>
-        <div class="swiper-slide"><img src="slide3.png" alt="Promo Slide 3"></div>
-        <div class="swiper-slide"><img src="slide4.png" alt="Promo Slide 4"></div>
+        <div class="swiper-slide">
+          <a href="MLBB.html">
+            <img src="slide1.png" alt="Promo Mobile Legends">
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="MLBB.html">
+            <img src="slide2.png" alt="Promo Free Fire">
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="MLBB.html">
+            <img src="slide3.png" alt="Promo PUBG Mobile">
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="MLBB.html">
+            <img src="slide4.png" alt="Promo Genshin Impact">
+          </a>
+        </div>
       </div>
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
@@ -263,37 +899,157 @@
     </div>
   </section>
 
+  <!-- Game Cards Section -->
   <div class="container">
-    <a href="MLBB.html?game=mlbb" class="game-card"><img src="MLBB.png" alt="MLBB"><div class="game-name">Mobile Legends</div></a>
-    <a href="FREEFIRE.html?game=ff" class="game-card"><img src="efef.png" alt="Free Fire"><div class="game-name">Free Fire</div></a>
-    <a href="PUBG.html?game=pubg" class="game-card"><img src="PUBG.png" alt="PUBG"><div class="game-name">PUBG Mobile</div></a>
-    <a href="genshin.html?game=genshin" class="game-card"><img src="kikir.png" alt="Genshin Impact"><div class="game-name">Genshin Impact</div></a>
-    <a href="valorant.html?game=valorant" class="game-card"><img src="valorant.png" alt="Valorant"><div class="game-name">Valorant</div></a>
-    <a href="CODM.html?game=codm" class="game-card"><img src="codm.png" alt="COD Mobile"><div class="game-name">COD Mobile</div></a>
-    <a href="arena.html?game=arena" class="game-card"><img src="arena.png" alt="Arena of Valor"><div class="game-name">Arena of Valor</div></a>
-    <a href="honkai.html?game=honkai" class="game-card"><img src="honkai.png" alt="Honkai Impact"><div class="game-name">Honkai Impact</div></a>
-    <a href="roblox.html?game=roblox" class="game-card"><img src="roblox.png" alt="Roblox"><div class="game-name">Roblox</div></a>
+    <h2 class="section-title">Pilih Game Favorit Anda</h2>
+    
+    <a href="MLBB.html?game=mlbb" class="game-card">
+      <img src="MLBB.png" alt="Mobile Legends">
+      <div class="game-info">
+        <div class="game-name">Mobile Legends</div>
+        <div class="game-price">Mulai dari Rp 5.000</div>
+        <div class="game-badge">TERLARIS</div>
+      </div>
+    </a>
+    
+    <a href="FREEFIRE.html?game=ff" class="game-card">
+      <img src="efef.png" alt="Free Fire">
+      <div class="game-info">
+        <div class="game-name">Free Fire</div>
+        <div class="game-price">Mulai dari Rp 5.000</div>
+      </div>
+    </a>
+    
+    <a href="PUBG.html?game=pubg" class="game-card">
+      <img src="PUBG.png" alt="PUBG Mobile">
+      <div class="game-info">
+        <div class="game-name">PUBG Mobile</div>
+        <div class="game-price">Mulai dari Rp 10.000</div>
+      </div>
+    </a>
+    
+    <a href="Genshin.html?game=genshin" class="game-card">
+      <img src="kikir.png" alt="Genshin Impact">
+      <div class="game-info">
+        <div class="game-name">Genshin Impact</div>
+        <div class="game-price">Mulai dari Rp 15.000</div>
+        <div class="game-badge">PROMO</div>
+      </div>
+    </a>
+    
+    <a href="Valorant.html?game=valorant" class="game-card">
+      <img src="valorant.png" alt="Valorant">
+      <div class="game-info">
+        <div class="game-name">Valorant</div>
+        <div class="game-price">Mulai dari Rp 20.000</div>
+      </div>
+    </a>
+    
+    <a href="CODM.html?game=codm" class="game-card">
+      <img src="codm.png" alt="COD Mobile">
+      <div class="game-info">
+        <div class="game-name">COD Mobile</div>
+        <div class="game-price">Mulai dari Rp 10.000</div>
+      </div>
+    </a>
+    
+    <a href="Arena.html?game=arena" class="game-card">
+      <img src="arena.png" alt="Arena of Valor">
+      <div class="game-info">
+        <div class="game-name">Arena of Valor</div>
+        <div class="game-price">Mulai dari Rp 5.000</div>
+      </div>
+    </a>
+    
+    <a href="Honkai.html?game=honkai" class="game-card">
+      <img src="honkai.png" alt="Honkai Impact">
+      <div class="game-info">
+        <div class="game-name">Honkai Impact</div>
+        <div class="game-price">Mulai dari Rp 15.000</div>
+      </div>
+    </a>
+    
+    <a href="Roblox.html?game=roblox" class="game-card">
+      <img src="roblox.png" alt="Roblox">
+      <div class="game-info">
+        <div class="game-name">Roblox</div>
+        <div class="game-price">Mulai dari Rp 10.000</div>
+        <div class="game-badge">BARU</div>
+      </div>
+    </a>
   </div>
 
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Tentang Kami</h3>
+        <p>Fachri Store adalah platform top up game terpercaya dengan harga termurah dan proses instan.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Layanan</h3>
+        <a href="#">Top Up Game</a>
+        <a href="#">Voucher Game</a>
+        <a href="#">Akun Game</a>
+        <a href="#">Item Game</a>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Bantuan</h3>
+        <a href="#">Cara Order</a>
+        <a href="#">Pembayaran</a>
+        <a href="#">Status Order</a>
+        <a href="#">Hubungi Kami</a>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Informasi</h3>
+        <a href="#">Syarat & Ketentuan</a>
+        <a href="#">Kebijakan Privasi</a>
+        <a href="#">FAQ</a>
+        <a href="#">Blog</a>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2025 Fachri Store. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- Login/Register Modal -->
   <div id="authModal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal()">&times;</span>
       <h2 id="modalTitle">Masuk</h2>
       <form id="authForm">
         <label>Email:</label>
-        <input type="email" required />
-        <label id="nameLabel" style="display:none;">Nama:</label>
-        <input type="text" id="nameInput" style="display:none;" />
+        <input type="email" placeholder="Masukkan email Anda" required />
+        
+        <label id="nameLabel" style="display:none;">Nama Lengkap:</label>
+        <input type="text" id="nameInput" style="display:none;" placeholder="Masukkan nama lengkap" />
+        
         <label>Kata Sandi:</label>
-        <input type="password" required />
-        <button type="submit">Lanjut</button>
+        <input type="password" placeholder="Masukkan kata sandi" required />
+        
+        <button type="submit">
+          <span id="submitText">Masuk</span>
+        </button>
       </form>
       <a href="#" onclick="toggleForm(event)">Belum punya akun? Daftar</a>
     </div>
   </div>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
+    // Initialize Swiper
     const swiper = new Swiper(".swiper", {
       loop: true,
       grabCursor: true,
@@ -301,7 +1057,7 @@
       centeredSlides: true,
       slidesPerView: 'auto',
       autoplay: {
-        delay: 3000,
+        delay: 5000,
         disableOnInteraction: false,
       },
       pagination: {
@@ -314,23 +1070,25 @@
       },
     });
 
+    // Modal functionality
     const modal = document.getElementById("authModal");
     const nameInput = document.getElementById("nameInput");
     const nameLabel = document.getElementById("nameLabel");
     const modalTitle = document.getElementById("modalTitle");
-
+    const submitText = document.getElementById("submitText");
     let isRegister = false;
 
     function openLoginModal() {
-      modal.style.display = "flex";
       isRegister = false;
       nameInput.style.display = "none";
       nameLabel.style.display = "none";
       modalTitle.innerText = "Masuk";
+      submitText.innerText = "Masuk";
+      modal.classList.add("show");
     }
 
     function closeModal() {
-      modal.style.display = "none";
+      modal.classList.remove("show");
     }
 
     function toggleForm(event) {
@@ -340,14 +1098,89 @@
         nameInput.style.display = "block";
         nameLabel.style.display = "block";
         modalTitle.innerText = "Daftar";
+        submitText.innerText = "Daftar";
         event.target.innerText = "Sudah punya akun? Masuk";
       } else {
         nameInput.style.display = "none";
         nameLabel.style.display = "none";
         modalTitle.innerText = "Masuk";
+        submitText.innerText = "Masuk";
         event.target.innerText = "Belum punya akun? Daftar";
       }
     }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Form submission
+    document.getElementById("authForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert(isRegister ? "Pendaftaran berhasil!" : "Login berhasil!");
+      closeModal();
+    });
+
+    // Create floating particles
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = window.innerWidth < 768 ? 30 : 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random size between 1px and 3px
+        const size = Math.random() * 2 + 1;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Random position
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        // Random opacity
+        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        
+        // Animation
+        const duration = Math.random() * 20 + 10;
+        particle.style.animation = `float ${duration}s infinite linear`;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Initialize particles when DOM is loaded
+    document.addEventListener('DOMContentLoaded', createParticles);
+
+    // Add scroll animation to elements
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.game-card, .footer-column');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.2;
+        
+        if (elementPosition < screenPosition) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    }
+
+    // Set initial state for animation
+    document.querySelectorAll('.game-card, .footer-column').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'all 0.6s ease';
+    });
+
+    // Add scroll event listener
+    window.addEventListener('scroll', animateOnScroll);
+    // Trigger once on load
+    animateOnScroll();
   </script>
 </body>
 </html>
