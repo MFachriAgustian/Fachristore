@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fachri Top Up - Mobile Legends</title>
+  <title>Fachri Top Up - Free Fire</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -352,6 +352,63 @@
         font-size: 1.5rem;
       }
     }
+
+    /* Animation for form elements */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Payment confirmation modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 500px;
+      width: 90%;
+      border: 1px solid var(--primary);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+      position: relative;
+    }
+
+    .payment-instruction {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .payment-steps {
+      margin-top: 15px;
+      padding-left: 20px;
+    }
+
+    .payment-steps li {
+      margin-bottom: 10px;
+    }
+
+    .countdown {
+      color: var(--primary);
+      font-weight: bold;
+      text-align: center;
+      margin: 20px 0;
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 <body>
@@ -366,7 +423,7 @@
     </div>
 
     <div class="form-group">
-      <label for="mlid">ID Pengguna</label>
+      <label for="ffid">ID Free Fire</label>
       <div class="input-wrapper">
         <input type="text" id="ffid" placeholder="Masukkan ID Free Fire" />
         <i class="fas fa-user input-icon"></i>
@@ -376,7 +433,7 @@
     <div class="form-group">
       <label>Pilih Jumlah Diamond</label>
       <div class="diamond-options">
-        <input type="radio" name="diamond" id="d1" value="70 Diamond - Rp10.000" />
+        <input type="radio" name="diamond" id="d1" value="70 Diamond - Rp10.000" data-diamond="70" data-price="10000" />
         <label for="d1" class="diamond-option">
           <img src="dmff.png" class="diamond-icon" alt="Diamond Icon" />
           <div class="diamond-info">
@@ -386,7 +443,7 @@
           <div class="badge">HOT</div>
         </label>
 
-        <input type="radio" name="diamond" id="d2" value="140 Diamond - Rp20.000" />
+        <input type="radio" name="diamond" id="d2" value="140 Diamond - Rp20.000" data-diamond="140" data-price="20000" />
         <label for="d2" class="diamond-option">
           <img src="dmff.png" class="diamond-icon" alt="Diamond Icon" />
           <div class="diamond-info">
@@ -395,7 +452,7 @@
           </div>
         </label>
 
-        <input type="radio" name="diamond" id="d3" value="355 Diamond - Rp50.000" />
+        <input type="radio" name="diamond" id="d3" value="355 Diamond - Rp50.000" data-diamond="355" data-price="50000" />
         <label for="d3" class="diamond-option">
           <img src="dmff.png" class="diamond-icon" alt="Diamond Icon" />
           <div class="diamond-info">
@@ -404,7 +461,7 @@
           </div>
         </label>
 
-        <input type="radio" name="diamond" id="d4" value="720 Diamond - Rp100.000" />
+        <input type="radio" name="diamond" id="d4" value="720 Diamond - Rp100.000" data-diamond="720" data-price="100000" />
         <label for="d4" class="diamond-option">
           <img src="dmff.png" class="diamond-icon" alt="Diamond Icon" />
           <div class="diamond-info">
@@ -457,7 +514,6 @@
 
         <input type="radio" name="metode" id="qris" value="QRIS" />
         <label for="qris" class="payment-option"><img src="qris.png" alt="QRIS" /></label>
-
       </div>
     </div>
 
@@ -468,7 +524,7 @@
 
   <script>
     function prosesTopUp() {
-      const id = document.getElementById('mlid').value;
+      const id = document.getElementById('ffid').value;
       const jumlah = document.getElementById('jumlah').value;
       const whatsapp = document.getElementById('whatsapp').value;
       const promo = document.getElementById('promo').value;
@@ -480,21 +536,98 @@
         return;
       }
 
+      // Extract diamond and price from selected diamond option
+      const diamondAmount = diamondRadio.getAttribute('data-diamond');
+      const pricePerItem = parseInt(diamondRadio.getAttribute('data-price'));
+      const totalItems = parseInt(jumlah);
+      const totalPrice = pricePerItem * totalItems;
+      const totalDiamond = diamondAmount * totalItems;
+      
+      // Format price to Indonesian Rupiah
+      const formattedPrice = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(totalPrice).replace(/\D00(?=\D*$)/, '');
+
       const summary = `
         <div style="text-align:left; margin-bottom:20px;">
-          <h3 style="color:var(--primary); border-bottom:1px solid rgba(255,215,0,0.3); padding-bottom:10px; margin-bottom:15px;">Ringkasan Top Up</h3>
-          <p><strong>Game:</strong> Mobile Legends</p>
-          <p><strong>ID:</strong> ${id}</p>
-          <p><strong>Paket:</strong> ${diamondRadio.value}</p>
-          <p><strong>Jumlah:</strong> ${jumlah}</p>
-          <p><strong>WhatsApp:</strong> ${whatsapp}</p>
+          <h3 style="color:var(--primary); border-bottom:1px solid rgba(255,215,0,0.3); padding-bottom:10px; margin-bottom:15px;">Ringkasan Pesanan</h3>
+          <p><strong>Game:</strong> Free Fire</p>
+          <p><strong>Player ID:</strong> ${id}</p>
+          <p><strong>Paket Diamond:</strong> ${diamondAmount} Diamond (${diamondRadio.value})</p>
+          <p><strong>Jumlah Pembelian:</strong> ${jumlah}x</p>
+          <p><strong>Total Diamond:</strong> ${totalDiamond} Diamond</p>
+          <p><strong>Total Harga:</strong> ${formattedPrice}</p>
+          <p><strong>Nomor WhatsApp:</strong> ${whatsapp}</p>
           <p><strong>Kode Promo:</strong> ${promo || '-'}</p>
-          <p><strong>Pembayaran:</strong> ${metodeRadio.value}</p>
+          <p><strong>Metode Pembayaran:</strong> ${metodeRadio.value}</p>
         </div>
-        <p style="color:var(--primary); font-weight:bold;">Lanjutkan ke pembayaran...</p>
+        <p style="color:var(--primary); font-weight:bold; text-align:center;">Konfirmasi pesanan Anda</p>
       `;
 
-      showAlert('success', summary);
+      showConfirmationModal(summary, totalPrice, metodeRadio.value);
+    }
+
+    function showConfirmationModal(message, totalPrice, paymentMethod) {
+      const modal = document.createElement('div');
+      modal.className = 'modal-overlay';
+      
+      // Format price to Indonesian Rupiah
+      const formattedPrice = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(totalPrice).replace(/\D00(?=\D*$)/, '');
+      
+      modal.innerHTML = `
+        <div class="modal-content">
+          ${message}
+          
+          <div class="payment-instruction">
+            <h4 style="color:var(--primary); margin-top:0;">Instruksi Pembayaran:</h4>
+            <p>Total yang harus dibayar: <strong style="color:var(--primary);">${formattedPrice}</strong></p>
+            <p>Metode: <strong>${paymentMethod}</strong></p>
+            
+            <ol class="payment-steps">
+              <li>Klik tombol "Konfirmasi & Bayar" di bawah</li>
+              <li>Anda akan diarahkan ke halaman pembayaran</li>
+              <li>Selesaikan pembayaran sesuai instruksi</li>
+              <li>Diamond akan ditambahkan ke akun Anda dalam 1-5 menit setelah pembayaran berhasil</li>
+            </ol>
+          </div>
+          
+          <div class="countdown" id="countdown">Konfirmasi dalam: 30 detik</div>
+          
+          <button onclick="processPayment()" style="width:100%;">
+            <i class="fas fa-check-circle"></i> Konfirmasi & Bayar
+          </button>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      // Start countdown
+      let timeLeft = 30;
+      const countdownElement = modal.querySelector('#countdown');
+      const countdownInterval = setInterval(() => {
+        timeLeft--;
+        countdownElement.textContent = `Konfirmasi dalam: ${timeLeft} detik`;
+        
+        if (timeLeft <= 0) {
+          clearInterval(countdownInterval);
+          modal.remove();
+          showAlert('error', 'Waktu konfirmasi telah habis. Silakan ulangi proses pemesanan.');
+        }
+      }, 1000);
+    }
+    
+    function processPayment() {
+      // In a real application, this would redirect to payment gateway
+      // For demo purposes, we'll show a success message
+      showAlert('success', 'Pembayaran berhasil diproses! Diamond akan ditambahkan ke akun Anda dalam 1-5 menit. Terima kasih!');
+      
+      // Remove any existing modals
+      const modal = document.querySelector('.modal-overlay');
+      if (modal) modal.remove();
     }
 
     function showAlert(type, message) {
@@ -550,12 +683,7 @@
       formGroups.forEach((group, index) => {
         group.style.opacity = '0';
         group.style.transform = 'translateY(20px)';
-        group.style.transition = `all 0.5s ease ${index * 0.1}s`;
-        
-        setTimeout(() => {
-          group.style.opacity = '1';
-          group.style.transform = 'translateY(0)';
-        }, 100);
+        group.style.animation = `fadeIn 0.5s ease ${index * 0.1}s forwards`;
       });
     });
   </script>
