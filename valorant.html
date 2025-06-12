@@ -4,193 +4,527 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fachri Top Up - Valorant</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #474747;
+    :root {
+      --primary: #FFD700;
+      --primary-dark: #BF9B30;
+      --secondary: #121212;
+      --accent: #FF5F1F;
+      --text: #FFFFFF;
+      --text-dark: #2C3E50;
+      --card-bg: #1E1E1E;
+      --input-bg: #2D2D2D;
+      --success: #2ECC71;
+    }
+
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
+
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+      min-height: 100vh;
+      color: var(--text);
+      padding: 20px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 215, 0, 0.1);
+      transform: translateX(-5px);
+    }
+
     .container {
       max-width: 600px;
-      margin: 30px auto;
+      margin: 0 auto;
       padding: 30px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background: rgba(30, 30, 30, 0.9);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      backdrop-filter: blur(5px);
     }
+
     .header {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
       gap: 15px;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
+      position: relative;
     }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      border-radius: 2px;
+    }
+
     .product-logo {
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
       object-fit: contain;
+      border-radius: 16px;
+      border: 2px solid var(--primary);
+      padding: 5px;
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+      transition: all 0.3s ease;
     }
+
+    .product-logo:hover {
+      transform: scale(1.05) rotate(5deg);
+    }
+
     h2 {
       text-align: center;
-      color: #2c3e50;
+      color: var(--primary);
+      font-size: 1.8rem;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
     }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
     label {
       display: block;
-      margin-top: 15px;
+      margin-bottom: 8px;
       font-weight: 600;
+      color: var(--text);
     }
+
+    .input-wrapper {
+      position: relative;
+    }
+
     input,
     select {
       width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      padding: 14px 15px;
+      margin-top: 5px;
+      border-radius: 10px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      background: var(--input-bg);
+      color: var(--text);
+      font-size: 1rem;
+      transition: all 0.3s ease;
     }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+
+    .input-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+    }
+
     .diamond-options {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-top: 10px;
+      gap: 15px;
+      margin-top: 15px;
     }
+
     .diamond-options input[type='radio'] {
       display: none;
     }
-    .diamond-options label {
+
+    .diamond-option {
       display: flex;
       align-items: center;
-      gap: 10px;
-      border: 1px solid #ccc;
-      padding: 10px;
-      border-radius: 8px;
+      gap: 12px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      padding: 15px;
+      border-radius: 12px;
       text-align: left;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
+      background: rgba(30, 30, 30, 0.7);
+      position: relative;
+      overflow: hidden;
     }
-    .diamond-options input[type='radio']:checked + label {
-      background: #e74c3c;
-      color: white;
-      border-color: #c0392b;
+
+    .diamond-option::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+      transition: 0.5s;
     }
+
+    .diamond-option:hover::before {
+      left: 100%;
+    }
+
+    .diamond-options input[type='radio']:checked + .diamond-option {
+      background: rgba(255, 215, 0, 0.1);
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    }
+
+    .diamond-options input[type='radio']:checked + .diamond-option .diamond-icon {
+      transform: scale(1.2) rotate(15deg);
+    }
+
     .diamond-icon {
-      width: 24px;
-      height: 24px;
+      width: 30px;
+      height: 30px;
+      transition: all 0.3s ease;
     }
+
+    .diamond-info {
+      flex: 1;
+    }
+
+    .diamond-amount {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .diamond-price {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--accent);
+      color: white;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      transform: rotate(15deg);
+    }
+
     .payment-options {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
       gap: 15px;
-      flex-wrap: wrap;
-      margin-top: 10px;
+      margin-top: 15px;
     }
+
     .payment-options input[type='radio'] {
       display: none;
     }
-    .payment-options label {
+
+    .payment-option {
       cursor: pointer;
-      padding: 5px;
       border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
       border: 2px solid transparent;
-      transition: 0.2s;
     }
-    .payment-options img {
-      width: 80px;
+
+    .payment-option img {
+      width: 100%;
       height: auto;
+      display: block;
+      border-radius: 8px;
     }
-    .payment-options input[type='radio']:checked + label {
-      border-color: #e74c3c;
-      background: #fdecea;
+
+    .payment-options input[type='radio']:checked + .payment-option {
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+      transform: translateY(-5px);
     }
+
+    .payment-option::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .payment-options input[type='radio']:checked + .payment-option::after {
+      opacity: 1;
+    }
+
     button {
       width: 100%;
-      padding: 12px;
-      margin-top: 25px;
-      background: #e74c3c;
+      padding: 16px;
+      margin-top: 30px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       border: none;
-      color: white;
-      font-size: 16px;
+      color: #000;
+      font-size: 1.1rem;
       font-weight: bold;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
     }
+
     button:hover {
-      background: #c0392b;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    button:hover::after {
+      left: 100%;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 25px 20px;
+      }
+      
+      .diamond-options {
+        grid-template-columns: 1fr;
+      }
+      
+      .payment-options {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px 15px;
+      }
+      
+      .product-logo {
+        width: 70px;
+        height: 70px;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Animation for form elements */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Payment confirmation modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 500px;
+      width: 90%;
+      border: 1px solid var(--primary);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+      position: relative;
+    }
+
+    .payment-instruction {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .payment-steps {
+      margin-top: 15px;
+      padding-left: 20px;
+    }
+
+    .payment-steps li {
+      margin-bottom: 10px;
+    }
+
+    .countdown {
+      color: var(--primary);
+      font-weight: bold;
+      text-align: center;
+      margin: 20px 0;
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div style="text-align:left; margin-top: 20px;">
-  <a href="index.html" style="color:#3498db; text-decoration:none; font-weight:bold;">
-    ← Kembali
-  </a>
-</div>
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+    </a>
+
     <div class="header">
       <img src="valorant1.png" alt="Valorant Logo" class="product-logo" />
-      <h2>Fachri Top Up - Valorant</h2>
+      <h2>Top Up Valorant</h2>
     </div>
 
-    <label for="riotid">Riot ID</label>
-    <input type="text" id="riotid" placeholder="Contoh: Nama#1234" />
-
-    <label>Pilih Jumlah Valorant Points</label>
-    <div class="diamond-options">
-      <input type="radio" name="diamond" id="v1" value="125 VP - Rp15.000" />
-      <label for="v1">
-        <img src="vp.png" class="diamond-icon" alt="VP Icon" />
-        125 VP - Rp15.000
-      </label>
-
-      <input type="radio" name="diamond" id="v2" value="420 VP - Rp50.000" />
-      <label for="v2">
-        <img src="vp.png" class="diamond-icon" alt="VP Icon" />
-        420 VP - Rp50.000
-      </label>
-
-      <input type="radio" name="diamond" id="v3" value="700 VP - Rp80.000" />
-      <label for="v3">
-        <img src="vp.png" class="diamond-icon" alt="VP Icon" />
-        700 VP - Rp80.000
-      </label>
-
-      <input type="radio" name="diamond" id="v4" value="1375 VP - Rp150.000" />
-      <label for="v4">
-        <img src="vp.png" class="diamond-icon" alt="VP Icon" />
-        1375 VP - Rp150.000
-      </label>
+    <div class="form-group">
+      <label for="valorantid">Riot ID</label>
+      <div class="input-wrapper">
+        <input type="text" id="valorantid" placeholder="Contoh: Fachri#1234" />
+        <i class="fas fa-user input-icon"></i>
+      </div>
     </div>
 
-    <label for="jumlah">Jumlah Pembelian</label>
-    <input type="number" id="jumlah" min="1" value="1" />
+    <div class="form-group">
+      <label>Pilih Jumlah Valorant Points</label>
+      <div class="diamond-options">
+        <input type="radio" name="diamond" id="d1" value="125 VP - Rp15.000" data-vp="125" data-price="15000" />
+        <label for="d1" class="diamond-option">
+          <img src="vp.png" class="diamond-icon" alt="Diamond Icon" />
+          <div class="diamond-info">
+            <div class="diamond-amount">125 VP</div>
+            <div class="diamond-price">Rp15.000</div>
+          </div>
+          <div class="badge">HOT</div>
+        </label>
 
-    <label for="whatsapp">Nomor WhatsApp</label>
-    <input type="tel" id="whatsapp" placeholder="08xxxxxxxxxx" />
+        <input type="radio" name="diamond" id="d2" value="420 VP - Rp50.000" data-vp="420" data-price="50000" />
+        <label for="d2" class="diamond-option">
+          <img src="vp.png" class="diamond-icon" alt="Diamond Icon" />
+          <div class="diamond-info">
+            <div class="diamond-amount">420 VP</div>
+            <div class="diamond-price">Rp50.000</div>
+          </div>
+        </label>
 
-    <label for="promo">Kode Promo (Opsional)</label>
-    <input type="text" id="promo" placeholder="Masukkan kode promo jika ada" />
+        <input type="radio" name="diamond" id="d3" value="700 VP - Rp80.000" data-vp="700" data-price="80000" />
+        <label for="d3" class="diamond-option">
+          <img src="vp.png" class="diamond-icon" alt="Diamond Icon" />
+          <div class="diamond-info">
+            <div class="diamond-amount">700 VP</div>
+            <div class="diamond-price">Rp80.000</div>
+          </div>
+        </label>
 
-    <label>Pilih Metode Pembayaran</label>
-    <div class="payment-options">
-      <input type="radio" name="metode" id="dana" value="Dana" />
-      <label for="dana"><img src="dana.png" alt="Dana" /></label>
-
-      <input type="radio" name="metode" id="ovo" value="OVO" />
-      <label for="ovo"><img src="ovo.png" alt="OVO" /></label>
-
-      <input type="radio" name="metode" id="gopay" value="Gopay" />
-      <label for="gopay"><img src="gopay.png" alt="Gopay" /></label>
-
-      <input type="radio" name="metode" id="bank" value="Bank Transfer" />
-      <label for="bank"><img src="bank.png" alt="Bank" /></label>
+        <input type="radio" name="diamond" id="d4" value="1375 VP - Rp150.000" data-vp="1375" data-price="150000" />
+        <label for="d4" class="diamond-option">
+          <img src="vp.png" class="diamond-icon" alt="Diamond Icon" />
+          <div class="diamond-info">
+            <div class="diamond-amount">1375 VP</div>
+            <div class="diamond-price">Rp150.000</div>
+          </div>
+          <div class="badge">BEST</div>
+        </label>
+      </div>
     </div>
 
-    <button onclick="prosesTopUp()">Bayar Sekarang</button>
+    <div class="form-group">
+      <label for="jumlah">Jumlah Pembelian</label>
+      <div class="input-wrapper">
+        <input type="number" id="jumlah" min="1" value="1" />
+        <i class="fas fa-shopping-cart input-icon"></i>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="whatsapp">Nomor WhatsApp</label>
+      <div class="input-wrapper">
+        <input type="tel" id="whatsapp" placeholder="08xxxxxxxxxx" />
+        <i class="fab fa-whatsapp input-icon"></i>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="promo">Kode Promo (Opsional)</label>
+      <div class="input-wrapper">
+        <input type="text" id="promo" placeholder="Masukkan kode promo jika ada" />
+        <i class="fas fa-tag input-icon"></i>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Pilih Metode Pembayaran</label>
+      <div class="payment-options">
+        <input type="radio" name="metode" id="dana" value="Dana" />
+        <label for="dana" class="payment-option"><img src="dana.png" alt="Dana" /></label>
+
+        <input type="radio" name="metode" id="ovo" value="OVO" />
+        <label for="ovo" class="payment-option"><img src="ovo.png" alt="OVO" /></label>
+
+        <input type="radio" name="metode" id="gopay" value="Gopay" />
+        <label for="gopay" class="payment-option"><img src="gopay.png" alt="Gopay" /></label>
+
+        <input type="radio" name="metode" id="bank" value="Bank Transfer" />
+        <label for="bank" class="payment-option"><img src="bank.png" alt="Bank" /></label>
+
+        <input type="radio" name="metode" id="qris" value="QRIS" />
+        <label for="qris" class="payment-option"><img src="qris.png" alt="QRIS" /></label>
+      </div>
+    </div>
+
+    <button onclick="prosesTopUp()">
+      <i class="fas fa-bolt"></i> Bayar Sekarang
+    </button>
   </div>
 
   <script>
     function prosesTopUp() {
-      const id = document.getElementById('riotid').value;
+      const id = document.getElementById('valorantid').value;
       const jumlah = document.getElementById('jumlah').value;
       const whatsapp = document.getElementById('whatsapp').value;
       const promo = document.getElementById('promo').value;
@@ -198,21 +532,160 @@
       const metodeRadio = document.querySelector('input[name="metode"]:checked');
 
       if (!id || !diamondRadio || !jumlah || !whatsapp || !metodeRadio) {
-        alert("Harap lengkapi semua data yang wajib diisi.");
+        showAlert('error', 'Harap lengkapi semua data yang wajib diisi.');
         return;
       }
 
-      alert(`✅ Ringkasan Top Up:
-- Game: Valorant
-- Riot ID: ${id}
-- Paket: ${diamondRadio.value}
-- Jumlah: ${jumlah}
-- WhatsApp: ${whatsapp}
-- Kode Promo: ${promo || '-'}
-- Pembayaran: ${metodeRadio.value}
+      // Extract VP and price from selected diamond option
+      const vpAmount = diamondRadio.getAttribute('data-vp');
+      const pricePerItem = parseInt(diamondRadio.getAttribute('data-price'));
+      const totalItems = parseInt(jumlah);
+      const totalPrice = pricePerItem * totalItems;
+      const totalVP = vpAmount * totalItems;
+      
+      // Format price to Indonesian Rupiah
+      const formattedPrice = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(totalPrice).replace(/\D00(?=\D*$)/, '');
 
-Lanjutkan ke pembayaran...`);
+      const summary = `
+        <div style="text-align:left; margin-bottom:20px;">
+          <h3 style="color:var(--primary); border-bottom:1px solid rgba(255,215,0,0.3); padding-bottom:10px; margin-bottom:15px;">Ringkasan Pesanan</h3>
+          <p><strong>Game:</strong> Valorant</p>
+          <p><strong>Riot ID:</strong> ${id}</p>
+          <p><strong>Paket VP:</strong> ${vpAmount} VP (${diamondRadio.value})</p>
+          <p><strong>Jumlah Pembelian:</strong> ${jumlah}x</p>
+          <p><strong>Total VP:</strong> ${totalVP} VP</p>
+          <p><strong>Total Harga:</strong> ${formattedPrice}</p>
+          <p><strong>Nomor WhatsApp:</strong> ${whatsapp}</p>
+          <p><strong>Kode Promo:</strong> ${promo || '-'}</p>
+          <p><strong>Metode Pembayaran:</strong> ${metodeRadio.value}</p>
+        </div>
+        <p style="color:var(--primary); font-weight:bold; text-align:center;">Konfirmasi pesanan Anda</p>
+      `;
+
+      showConfirmationModal(summary, totalPrice, metodeRadio.value);
     }
+
+    function showConfirmationModal(message, totalPrice, paymentMethod) {
+      const modal = document.createElement('div');
+      modal.className = 'modal-overlay';
+      
+      // Format price to Indonesian Rupiah
+      const formattedPrice = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(totalPrice).replace(/\D00(?=\D*$)/, '');
+      
+      modal.innerHTML = `
+        <div class="modal-content">
+          ${message}
+          
+          <div class="payment-instruction">
+            <h4 style="color:var(--primary); margin-top:0;">Instruksi Pembayaran:</h4>
+            <p>Total yang harus dibayar: <strong style="color:var(--primary);">${formattedPrice}</strong></p>
+            <p>Metode: <strong>${paymentMethod}</strong></p>
+            
+            <ol class="payment-steps">
+              <li>Klik tombol "Konfirmasi & Bayar" di bawah</li>
+              <li>Anda akan diarahkan ke halaman pembayaran</li>
+              <li>Selesaikan pembayaran sesuai instruksi</li>
+              <li>VP akan ditambahkan ke akun Anda dalam 1-5 menit setelah pembayaran berhasil</li>
+            </ol>
+          </div>
+          
+          <div class="countdown" id="countdown">Konfirmasi dalam: 30 detik</div>
+          
+          <button onclick="processPayment()" style="width:100%;">
+            <i class="fas fa-check-circle"></i> Konfirmasi & Bayar
+          </button>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      // Start countdown
+      let timeLeft = 30;
+      const countdownElement = modal.querySelector('#countdown');
+      const countdownInterval = setInterval(() => {
+        timeLeft--;
+        countdownElement.textContent = `Konfirmasi dalam: ${timeLeft} detik`;
+        
+        if (timeLeft <= 0) {
+          clearInterval(countdownInterval);
+          modal.remove();
+          showAlert('error', 'Waktu konfirmasi telah habis. Silakan ulangi proses pemesanan.');
+        }
+      }, 1000);
+    }
+    
+    function processPayment() {
+      // In a real application, this would redirect to payment gateway
+      // For demo purposes, we'll show a success message
+      showAlert('success', 'Pembayaran berhasil diproses! VP akan ditambahkan ke akun Anda dalam 1-5 menit. Terima kasih!');
+      
+      // Remove any existing modals
+      const modal = document.querySelector('.modal-overlay');
+      if (modal) modal.remove();
+    }
+
+    function showAlert(type, message) {
+      const alertBox = document.createElement('div');
+      alertBox.style.position = 'fixed';
+      alertBox.style.top = '20px';
+      alertBox.style.left = '50%';
+      alertBox.style.transform = 'translateX(-50%)';
+      alertBox.style.padding = '20px';
+      alertBox.style.borderRadius = '12px';
+      alertBox.style.color = 'white';
+      alertBox.style.zIndex = '1000';
+      alertBox.style.maxWidth = '90%';
+      alertBox.style.width = '400px';
+      alertBox.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+      alertBox.style.animation = 'fadeIn 0.3s ease-out';
+      alertBox.innerHTML = `
+        <div style="display:flex; align-items:center; gap:15px; margin-bottom:15px;">
+          <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" 
+             style="font-size:2rem; color:${type === 'success' ? 'var(--success)' : 'var(--accent)'}"></i>
+          <h3 style="margin:0;">${type === 'success' ? 'Berhasil!' : 'Error!'}</h3>
+        </div>
+        ${message}
+        <button onclick="this.parentElement.remove()" 
+                style="margin-top:20px; padding:10px 15px; background:rgba(255,255,255,0.1); 
+                       border:1px solid rgba(255,255,255,0.3); color:white; border-radius:8px; 
+                       cursor:pointer; width:100%;">
+          Tutup
+        </button>
+      `;
+
+      if (type === 'success') {
+        alertBox.style.background = 'rgba(30, 30, 30, 0.95)';
+        alertBox.style.border = '1px solid var(--primary)';
+      } else {
+        alertBox.style.background = 'rgba(46, 30, 30, 0.95)';
+        alertBox.style.border = '1px solid var(--accent)';
+      }
+
+      document.body.appendChild(alertBox);
+
+      if (type === 'success') {
+        setTimeout(() => {
+          alertBox.remove();
+        }, 10000);
+      }
+    }
+
+    // Add animation for form elements
+    document.addEventListener('DOMContentLoaded', () => {
+      const formGroups = document.querySelectorAll('.form-group');
+      
+      formGroups.forEach((group, index) => {
+        group.style.opacity = '0';
+        group.style.transform = 'translateY(20px)';
+        group.style.animation = `fadeIn 0.5s ease ${index * 0.1}s forwards`;
+      });
+    });
   </script>
 </body>
 </html>
