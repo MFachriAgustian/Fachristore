@@ -1,47 +1,131 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cek Transaksi - Fachri Store</title>
+  <title>Cek Status Transaksi - Fachri Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
+    :root {
+      --primary: #FFD700;
+      --primary-dark: #BF9B30;
+      --secondary: #121212;
+      --accent: #FF5F1F;
+      --text: #FFFFFF;
+      --text-secondary: #E0E0E0;
+      --card-bg: #1E1E1E;
+      --input-bg: #2D2D2D;
+      --success: #2ECC71;
+      --warning: #F39C12;
+      --error: #E74C3C;
+    }
+
+    * {
       margin: 0;
       padding: 0;
-      background-color: #000;
-      color: #fff;
-      background-image: radial-gradient(circle at 20% 20%, rgba(191, 160, 52, 0.08) 0%, transparent 25%),
-        radial-gradient(circle at 80% 60%, rgba(191, 160, 52, 0.05) 0%, transparent 30%);
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: #000;
+      min-height: 100vh;
+      color: var(--text);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(191, 160, 52, 0.15) 0%, transparent 25%),
+        radial-gradient(circle at 90% 70%, rgba(191, 160, 52, 0.1) 0%, transparent 30%);
+      background-attachment: fixed;
     }
 
     header {
-      background-color: #000;
-      padding: 24px 16px;
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+      padding: 30px 20px;
       text-align: center;
-      border-bottom: 4px solid #bfa034;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border-bottom: 3px solid var(--primary);
+      position: relative;
     }
 
     header h1 {
-      font-size: 2rem;
-      color: #fff;
+      font-size: 2.5rem;
+      color: var(--primary);
       margin: 0;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+      position: relative;
+      display: inline-block;
+    }
+
+    header h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      border-radius: 3px;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-50%) translateX(-5px);
     }
 
     .container {
-      max-width: 500px;
-      margin: 40px auto;
-      background: #111;
-      padding: 32px 24px;
-      border-radius: 12px;
-      box-shadow: 0 0 16px rgba(191, 160, 52, 0.2);
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 40px;
+      background: rgba(30, 30, 30, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      backdrop-filter: blur(5px);
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .container h2 {
       text-align: center;
-      margin-bottom: 20px;
-      color: #f5e7c1;
+      margin-bottom: 30px;
+      color: var(--primary);
+      font-size: 1.8rem;
+      position: relative;
+    }
+
+    .container h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
     }
 
     form {
@@ -49,97 +133,417 @@
       flex-direction: column;
     }
 
+    .form-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
     label {
-      margin-bottom: 8px;
-      font-weight: bold;
-      color: #ccc;
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .input-wrapper {
+      position: relative;
     }
 
     input {
-      padding: 12px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      border: none;
-      background: #222;
-      color: #fff;
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      background: var(--input-bg);
+      color: var(--text);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    }
+
+    .input-icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
     }
 
     button {
-      padding: 12px;
-      background: #bfa034;
+      width: 100%;
+      padding: 16px;
+      margin-top: 10px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       color: #000;
+      font-size: 1.1rem;
       font-weight: bold;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
     }
 
     button:hover {
-      background: #e0c146;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    button:hover::after {
+      left: 100%;
     }
 
     .result {
-      margin-top: 24px;
-      padding: 16px;
-      background: #222;
-      border-radius: 8px;
+      margin-top: 30px;
+      padding: 25px;
+      background: var(--card-bg);
+      border-radius: 15px;
+      border-left: 5px solid var(--primary);
       display: none;
+      animation: fadeIn 0.5s ease-out;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
-    .result p {
-      margin: 8px 0;
+    .result-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .result-title {
+      font-size: 1.3rem;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .status-badge {
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .status-success {
+      background: rgba(46, 204, 113, 0.2);
+      color: var(--success);
+      border: 1px solid var(--success);
+    }
+
+    .status-pending {
+      background: rgba(243, 156, 18, 0.2);
+      color: var(--warning);
+      border: 1px solid var(--warning);
+    }
+
+    .status-error {
+      background: rgba(231, 76, 60, 0.2);
+      color: var(--error);
+      border: 1px solid var(--error);
+    }
+
+    .result-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .detail-item {
+      margin-bottom: 15px;
+    }
+
+    .detail-label {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+    }
+
+    .detail-value {
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    .game-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-right: 15px;
+    }
+
+    .game-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 215, 0, 0.3);
+      border-top: 4px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 15px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        margin: 30px 20px;
+        padding: 30px 20px;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+        padding-top: 10px;
+      }
+      
+      .result-details {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 25px 15px;
+      }
+      
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .back-btn {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        margin-bottom: 15px;
+        justify-content: center;
+      }
     }
   </style>
 </head>
 
 <body>
-
   <header>
-    <h1>Cek Transaksi</h1>
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </a>
+    <h1>Cek Status Transaksi</h1>
   </header>
 
   <div class="container">
     <h2>Masukkan ID Transaksi</h2>
     <form id="cekForm">
-      <label for="transaksiId">ID Transaksi:</label>
-      <input type="text" id="transaksiId" name="transaksiId" required />
-      <button type="submit">Cek Sekarang</button>
+      <div class="form-group">
+        <label for="transaksiId">ID Transaksi</label>
+        <div class="input-wrapper">
+          <input type="text" id="transaksiId" name="transaksiId" placeholder="Contoh: 123456" required />
+          <i class="fas fa-receipt input-icon"></i>
+        </div>
+      </div>
+
+      <button type="submit">
+        <i class="fas fa-search"></i> Cek Status
+      </button>
     </form>
 
+    <div class="loading" id="loading">
+      <div class="loading-spinner"></div>
+      <p>Memeriksa transaksi...</p>
+    </div>
+
     <div class="result" id="resultBox">
-      <p><strong>Status:</strong> <span id="status">Diproses</span></p>
-      <p><strong>Game:</strong> <span id="game">Mobile Legends</span></p>
-      <p><strong>Jumlah:</strong> <span id="jumlah">86 Diamonds</span></p>
-      <p><strong>Tanggal:</strong> <span id="tanggal">30 Mei 2025</span></p>
+      <div class="result-header">
+        <div class="result-title">Detail Transaksi</div>
+        <div class="status-badge" id="statusBadge">Diproses</div>
+      </div>
+
+      <div class="game-info">
+        <img src="MLBB.png" alt="Game Icon" class="game-icon" id="gameIcon">
+        <div>
+          <div class="detail-label">Game</div>
+          <div class="detail-value" id="game">Mobile Legends</div>
+        </div>
+      </div>
+
+      <div class="result-details">
+        <div class="detail-item">
+          <div class="detail-label">ID Transaksi</div>
+          <div class="detail-value" id="transaksiIdDisplay">TRX-123456</div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Tanggal</div>
+          <div class="detail-value" id="tanggal">30 Mei 2025</div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Jumlah</div>
+          <div class="detail-value" id="jumlah">86 Diamonds</div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Metode Pembayaran</div>
+          <div class="detail-value" id="pembayaran">Dana</div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Total Pembayaran</div>
+          <div class="detail-value" id="total">Rp 20.000</div>
+        </div>
+
+        <div class="detail-item">
+          <div class="detail-label">Nomor WhatsApp</div>
+          <div class="detail-value" id="whatsapp">081234567890</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
     const form = document.getElementById("cekForm");
     const resultBox = document.getElementById("resultBox");
+    const loading = document.getElementById("loading");
+    const statusBadge = document.getElementById("statusBadge");
+    const gameIcon = document.getElementById("gameIcon");
+
+    // Sample game icons
+    const gameIcons = {
+      'Mobile Legends': 'MLBB.png',
+      'Valorant': 'valorant.png',
+      'Free Fire': 'efef.png',
+      'PUBG Mobile': 'PUBG.png',
+      'Genshin Impact': 'kikir.png'
+    };
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      const id = document.getElementById("transaksiId").value;
+      const id = document.getElementById("transaksiId").value.trim();
+      
+      // Show loading
+      resultBox.style.display = "none";
+      loading.style.display = "block";
+      
+      // Simulate API call delay
+      setTimeout(() => {
+        checkTransaction(id);
+        loading.style.display = "none";
+        resultBox.style.display = "block";
+      }, 1500);
+    });
 
-      // Simulasi respons data (aslinya dari database/server)
-      if (id === "123456") {
-        document.getElementById("status").textContent = "Sukses";
-        document.getElementById("game").textContent = "Valorant";
-        document.getElementById("jumlah").textContent = "470 VP";
-        document.getElementById("tanggal").textContent = "29 Mei 2025";
-      } else {
-        document.getElementById("status").textContent = "Tidak ditemukan";
-        document.getElementById("game").textContent = "-";
-        document.getElementById("jumlah").textContent = "-";
-        document.getElementById("tanggal").textContent = "-";
-      }
+    function checkTransaction(id) {
+      // Sample transaction data (in real app, this would come from your backend)
+      const transactions = {
+        '123456': {
+          status: 'success',
+          game: 'Valorant',
+          amount: '470 VP',
+          date: '29 Mei 2025',
+          payment: 'Gopay',
+          total: 'Rp 50.000',
+          whatsapp: '081234567890'
+        },
+        '1234567': {
+          status: 'pending',
+          game: 'Mobile Legends',
+          amount: '172 Diamonds',
+          date: '30 Mei 2025',
+          payment: 'Bank Transfer',
+          total: 'Rp 40.000',
+          whatsapp: '087654321098'
+        },
+        'default': {
+          status: 'error',
+          game: '-',
+          amount: '-',
+          date: '-',
+          payment: '-',
+          total: '-',
+          whatsapp: '-'
+        }
+      };
 
-      resultBox.style.display = "block";
+      const transaction = transactions[id] || transactions['default'];
+      
+      // Update UI
+      document.getElementById("transaksiIdDisplay").textContent = id || '-';
+      document.getElementById("game").textContent = transaction.game;
+      document.getElementById("jumlah").textContent = transaction.amount;
+      document.getElementById("tanggal").textContent = transaction.date;
+      document.getElementById("pembayaran").textContent = transaction.payment;
+      document.getElementById("total").textContent = transaction.total;
+      document.getElementById("whatsapp").textContent = transaction.whatsapp;
+      
+      // Set status badge
+      statusBadge.textContent = 
+        transaction.status === 'success' ? 'Sukses' : 
+        transaction.status === 'pending' ? 'Diproses' : 'Tidak Ditemukan';
+      
+      statusBadge.className = 'status-badge ' + 
+        (transaction.status === 'success' ? 'status-success' : 
+         transaction.status === 'pending' ? 'status-pending' : 'status-error');
+      
+      // Set game icon
+      gameIcon.src = gameIcons[transaction.game] || 'MLBB.png';
+      gameIcon.alt = transaction.game + ' Icon';
+      
+      // Scroll to result
+      resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Add animation for form elements
+    document.addEventListener('DOMContentLoaded', () => {
+      const formGroups = document.querySelectorAll('.form-group');
+      
+      formGroups.forEach((group, index) => {
+        group.style.opacity = '0';
+        group.style.transform = 'translateY(20px)';
+        group.style.transition = `all 0.5s ease ${index * 0.1}s`;
+        
+        setTimeout(() => {
+          group.style.opacity = '1';
+          group.style.transform = 'translateY(0)';
+        }, 100);
+      });
     });
   </script>
-
 </body>
-
 </html>
