@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spin & Win Promo - Fachri Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #FFD700;
+      --primary-dark: #BF9B30;
+      --secondary: #121212;
+      --accent: #FF5F1F;
+      --text: #FFFFFF;
+      --text-secondary: #E0E0E0;
+      --card-bg: #1E1E1E;
+      --success: #2ECC71;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: #000;
+      min-height: 100vh;
+      color: var(--text);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(191, 160, 52, 0.15) 0%, transparent 25%),
+        radial-gradient(circle at 90% 70%, rgba(191, 160, 52, 0.1) 0%, transparent 30%);
+      background-attachment: fixed;
+    }
+
+    header {
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border-bottom: 3px solid var(--primary);
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin: 0;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-50%) translateX(-5px);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 0 20px;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .promo-card {
+      background: rgba(30, 30, 30, 0.9);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      backdrop-filter: blur(5px);
+      text-align: center;
+    }
+
+    .promo-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .promo-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 3px;
+    }
+
+    .promo-description {
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .wheel-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 0 auto 40px;
+    }
+
+    .wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--secondary);
+      position: relative;
+      overflow: hidden;
+      border: 5px solid var(--primary);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+      transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+      transform: rotate(0deg);
+    }
+
+    .wheel-section {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      transform-origin: bottom right;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .wheel-pointer {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      clip-path: polygon(50% 100%, 0 0, 100% 0);
+      z-index: 10;
+    }
+
+    .spin-btn {
+      padding: 16px 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #000;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+      margin-bottom: 30px;
+    }
+
+    .spin-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+
+    .spin-btn:active {
+      transform: translateY(1px);
+    }
+
+    .spin-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .spin-btn:hover::after {
+      left: 100%;
+    }
+
+    .result-container {
+      display: none;
+      margin-top: 30px;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .result-card {
+      background: rgba(255, 215, 0, 0.1);
+      border-radius: 15px;
+      padding: 25px;
+      border: 2px solid var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .result-title {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .result-description {
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .coupon-code {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 1.5rem;
+      letter-spacing: 3px;
+      color: var(--primary);
+      margin: 20px 0;
+      display: inline-block;
+      border: 1px dashed var(--primary);
+    }
+
+    .how-to-use {
+      text-align: left;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .how-to-use h3 {
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .how-to-use ol {
+      padding-left: 20px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .how-to-use li {
+      margin-bottom: 10px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      .wheel-container {
+        width: 250px;
+        height: 250px;
+      }
+      
+      .promo-card {
+        padding: 30px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .back-btn {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        margin-bottom: 15px;
+        justify-content: center;
+      }
+      
+      header h1 {
+        font-size: 1.8rem;
+        padding-top: 10px;
+      }
+      
+      .wheel-container {
+        width: 220px;
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Kembali
+    </a>
+    <h1>Spin & Win Promo</h1>
+  </header>
+
+  <div class="container">
+    <div class="promo-card">
+      <h2 class="promo-title">Dapatkan Diskon Spesial!</h2>
+      <p class="promo-description">
+        Putar roda keberuntungan untuk mendapatkan diskon eksklusif dari Fachri Store! 
+        Setiap pemain berkesempatan memenangkan diskon hingga 50% untuk pembelian berikutnya.
+      </p>
+      
+      <div class="wheel-container">
+        <div class="wheel-pointer"></div>
+        <div class="wheel" id="wheel">
+          <!-- Wheel sections will be added by JavaScript -->
+        </div>
+      </div>
+      
+      <button class="spin-btn" id="spinBtn">
+        <i class="fas fa-redo"></i> Putar Roda
+      </button>
+      
+      <div class="result-container" id="resultContainer">
+        <div class="result-card">
+          <h3 class="result-title">Selamat!</h3>
+          <p class="result-description">Anda mendapatkan:</p>
+          <div class="coupon-code" id="couponCode">DISKON10</div>
+          <p>Gunakan kode promo saat checkout untuk mendapatkan diskon Anda!</p>
+        </div>
+        
+        <div class="how-to-use">
+          <h3>Cara Menggunakan Kode Promo:</h3>
+          <ol>
+            <li>Tambahkan produk ke keranjang belanja Anda</li>
+            <li>Masuk ke halaman checkout</li>
+            <li>Masukkan kode promo di kolom yang tersedia</li>
+            <li>Diskon akan otomatis diterapkan</li>
+            <li>Selesaikan pembayaran Anda</li>
+          </ol>
+          <p style="margin-top: 15px; font-style: italic;">
+            * Promo berlaku hingga 30 hari setelah klaim
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Wheel configuration
+    const wheel = document.getElementById('wheel');
+    const spinBtn = document.getElementById('spinBtn');
+    const resultContainer = document.getElementById('resultContainer');
+    const couponCode = document.getElementById('couponCode');
+    
+    const prizes = [
+      { text: "10% OFF", value: "DISKON10", color: "#FFD700", discount: 10 },
+      { text: "5% OFF", value: "DISKON5", color: "#C0C0C0", discount: 5 },
+      { text: "20% OFF", value: "DISKON20", color: "#CD7F32", discount: 20 },
+      { text: "Coba Lagi", value: "COBALAGI", color: "#E74C3C", discount: 0 },
+      { text: "15% OFF", value: "DISKON15", color: "#2ECC71", discount: 15 },
+      { text: "Free Item", value: "GRATIS1", color: "#3498DB", discount: 0 },
+      { text: "25% OFF", value: "DISKON25", color: "#9B59B6", discount: 25 },
+      { text: "50% OFF", value: "DISKON50", color: "#FF5F1F", discount: 50 }
+    ];
+    
+    // Create wheel sections
+    function createWheel() {
+      const sectionAngle = 360 / prizes.length;
+      
+      prizes.forEach((prize, index) => {
+        const section = document.createElement('div');
+        section.className = 'wheel-section';
+        section.style.transform = `rotate(${sectionAngle * index}deg)`;
+        section.style.backgroundColor = prize.color;
+        
+        // Position the text correctly in each section
+        const text = document.createElement('div');
+        text.textContent = prize.text;
+        text.style.transform = `rotate(${sectionAngle / 2}deg) translate(30px)`;
+        text.style.transformOrigin = 'left center';
+        text.style.width = '100px';
+        
+        section.appendChild(text);
+        wheel.appendChild(section);
+      });
+    }
+    
+    // Spin the wheel
+    function spinWheel() {
+      // Disable button during spin
+      spinBtn.disabled = true;
+      spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memutar...';
+      
+      // Hide previous result
+      resultContainer.style.display = 'none';
+      
+      // Random rotation (5-10 full rotations plus random prize)
+      const randomPrizeIndex = Math.floor(Math.random() * prizes.length);
+      const sectionAngle = 360 / prizes.length;
+      const extraAngle = Math.random() * sectionAngle;
+      const rotation = 1800 + (randomPrizeIndex * sectionAngle) + extraAngle;
+      
+      // Apply rotation
+      wheel.style.transform = `rotate(${-rotation}deg)`;
+      
+      // After spin completes
+      setTimeout(() => {
+        spinBtn.disabled = false;
+        spinBtn.innerHTML = '<i class="fas fa-redo"></i> Putar Lagi';
+        
+        // Show result
+        const prize = prizes[randomPrizeIndex];
+        showResult(prize);
+      }, 4000);
+    }
+    
+    // Show result
+    function showResult(prize) {
+      if (prize.discount > 0) {
+        document.querySelector('.result-title').textContent = `Selamat! Anda Mendapatkan Diskon ${prize.discount}%`;
+        document.querySelector('.result-description').textContent = "Gunakan kode promo di bawah untuk mendapatkan diskon Anda:";
+        couponCode.textContent = prize.value;
+      } else if (prize.value === "GRATIS1") {
+        document.querySelector('.result-title').textContent = "Selamat! Anda Mendapatkan Item Gratis!";
+        document.querySelector('.result-description').textContent = "Gunakan kode promo di bawah untuk mendapatkan item gratis:";
+        couponCode.textContent = prize.value;
+      } else {
+        document.querySelector('.result-title').textContent = "Sayang Sekali!";
+        document.querySelector('.result-description').textContent = "Anda belum beruntung kali ini. Silakan coba lagi!";
+        couponCode.textContent = "COBALAGI";
+      }
+      
+      resultContainer.style.display = 'block';
+      resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      
+      // In a real app, you would save the coupon code to user's account
+      console.log(`User won: ${prize.text} (Code: ${prize.value})`);
+    }
+    
+    // Initialize
+    createWheel();
+    spinBtn.addEventListener('click', spinWheel);
+    
+    // Add animation for elements
+    document.addEventListener('DOMContentLoaded', () => {
+      const elements = document.querySelectorAll('.promo-title, .promo-description, .wheel-container, .spin-btn');
+      
+      elements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = `all 0.5s ease ${index * 0.1}s`;
+        
+        setTimeout(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, 100);
+      });
+    });
+  </script>
+</body>
+</html>
