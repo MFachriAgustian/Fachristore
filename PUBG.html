@@ -235,8 +235,8 @@
 
     .payment-options {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 10px;
       margin-top: 15px;
     }
 
@@ -246,40 +246,30 @@
 
     .payment-option {
       cursor: pointer;
-      border-radius: 10px;
+      border-radius: 8px;
       overflow: hidden;
       transition: all 0.3s ease;
       position: relative;
       border: 2px solid transparent;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.1);
     }
 
     .payment-option img {
-      width: 100%;
-      height: auto;
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
       display: block;
-      border-radius: 8px;
     }
 
     .payment-options input[type='radio']:checked + .payment-option {
       border-color: var(--primary);
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-      transform: translateY(-5px);
-    }
-
-    .payment-option::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.3);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .payment-options input[type='radio']:checked + .payment-option::after {
-      opacity: 1;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+      transform: translateY(-3px);
+      background: rgba(255,215,0,0.1);
     }
 
     button {
@@ -323,7 +313,6 @@
       left: 100%;
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
       .container {
         padding: 25px 20px;
@@ -334,7 +323,7 @@
       }
       
       .payment-options {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
@@ -351,15 +340,17 @@
       h2 {
         font-size: 1.5rem;
       }
+      
+      .payment-options {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
-    /* Animation for form elements */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Payment confirmation modal */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -382,7 +373,6 @@
       width: 90%;
       border: 1px solid var(--primary);
       box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-      position: relative;
     }
 
     .payment-instruction {
@@ -536,14 +526,12 @@
         return;
       }
 
-      // Extract diamond and price from selected diamond option
       const diamondAmount = parseInt(diamondRadio.getAttribute('data-diamond'));
       const pricePerItem = parseInt(diamondRadio.getAttribute('data-price'));
       const totalItems = parseInt(jumlah);
       const totalPrice = pricePerItem * totalItems;
       const totalUC = diamondAmount * totalItems;
       
-      // Format price to Indonesian Rupiah
       const formattedPrice = new Intl.NumberFormat('id-ID', {
         style: 'currency',
         currency: 'IDR'
@@ -572,7 +560,6 @@
       const modal = document.createElement('div');
       modal.className = 'modal-overlay';
       
-      // Format price to Indonesian Rupiah
       const formattedPrice = new Intl.NumberFormat('id-ID', {
         style: 'currency',
         currency: 'IDR'
@@ -605,7 +592,6 @@
       
       document.body.appendChild(modal);
       
-      // Start countdown
       let timeLeft = 30;
       const countdownElement = modal.querySelector('#countdown');
       const countdownInterval = setInterval(() => {
@@ -621,11 +607,8 @@
     }
     
     function processPayment() {
-      // In a real application, this would redirect to payment gateway
-      // For demo purposes, we'll show a success message
       showAlert('success', 'Pembayaran berhasil diproses! UC akan ditambahkan ke akun Anda dalam 1-5 menit. Terima kasih!');
       
-      // Remove any existing modals
       const modal = document.querySelector('.modal-overlay');
       if (modal) modal.remove();
     }
@@ -676,7 +659,6 @@
       }
     }
 
-    // Add animation for form elements
     document.addEventListener('DOMContentLoaded', () => {
       const formGroups = document.querySelectorAll('.form-group');
       
