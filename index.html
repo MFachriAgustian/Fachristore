@@ -1,29 +1,83 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content="#FFD700">
   <title>Fachri Store | Top Up Game Termurah & Terpercaya</title>
-  <link rel="icon" type="image/png" href="logo.png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="description" content="Top up game termurah dan terpercaya di Indonesia. Proses cepat, aman, dan garansi 100% uang kembali.">
+  <meta name="keywords" content="top up game, voucher game, mobile legends, free fire, genshin impact, pubg, valorant, top up murah, diamond murah, voucher game murah">
+  <meta name="author" content="Fachri Store">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fachristore.com/">
+  <meta property="og:title" content="Fachri Store | Top Up Game Termurah & Terpercaya">
+  <meta property="og:description" content="Top up game termurah dan terpercaya di Indonesia. Proses cepat, aman, dan garansi 100% uang kembali.">
+  <meta property="og:image" content="https://fachristore.com/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://fachristore.com/">
+  <meta property="twitter:title" content="Fachri Store | Top Up Game Termurah & Terpercaya">
+  <meta property="twitter:description" content="Top up game termurah dan terpercaya di Indonesia. Proses cepat, aman, dan garansi 100% uang kembali.">
+  <meta property="twitter:image" content="https://fachristore.com/images/og-image.jpg">
+  
+  <link rel="icon" type="image/png" href="logo.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="logo.png" sizes="180x180">
+  
+  <!-- Preload important resources -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" as="style">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style">
+  
+  <!-- Load Font Awesome FIRST -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Then other stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  
   <style>
     :root {
       --primary: #FFD700;
       --primary-dark: #BF9B30;
+      --primary-light: rgba(255, 215, 0, 0.1);
       --secondary: #121212;
       --accent: #FF5F1F;
+      --accent-dark: #D84315;
       --text: #FFFFFF;
       --text-secondary: #E0E0E0;
       --card-bg: #1E1E1E;
       --modal-bg: #1A1A1A;
       --input-bg: #2D2D2D;
+      --success: #4CAF50;
+      --error: #F44336;
+      --warning: #FF9800;
+      --info: #2196F3;
+      --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --border-radius: 16px;
+      --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      --box-shadow-hover: 0 15px 30px rgba(255, 215, 0, 0.2);
     }
 
+    /* Base Styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -36,11 +90,36 @@
         radial-gradient(circle at 90% 70%, rgba(191, 160, 52, 0.1) 0%, transparent 30%);
       background-attachment: fixed;
       overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-dark);
     }
 
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 10px;
+      height: 10px;
     }
     ::-webkit-scrollbar-track {
       background: var(--secondary);
@@ -49,105 +128,55 @@
       background: var(--primary);
       border-radius: 5px;
     }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-dark);
+    }
 
-    /* Header Styles */
-    header {
-      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-      padding: 30px 20px 20px;
+    /* Layout Components */
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .section-title {
       text-align: center;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      border-bottom: 3px solid var(--primary);
+      margin-bottom: 50px;
+      font-size: 2.5rem;
+      color: var(--primary);
       position: relative;
-      z-index: 100;
+      display: inline-block;
+      width: 100%;
     }
 
-    .logo-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 15px;
-      gap: 15px;
-      position: relative;
-      flex-wrap: wrap; /* Memungkinkan wrapping di layar kecil */
-    }
-
-    .logo-f {
-      width: 80px;
-      height: 80px;
-      border-radius: 18px;
-      object-fit: contain;
-      animation: float 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
-      border: 2px solid var(--primary);
-      padding: 5px;
-      background: rgba(0, 0, 0, 0.7);
-      transition: all 0.3s ease;
-    }
-
-    .logo-f:hover {
-      transform: scale(1.05);
-      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
-    }
-
-    .logo-text {
-      display: flex;
-      font-size: 3.2rem;
-      font-weight: 800;
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-      position: relative;
-      flex-wrap: wrap; /* Memungkinkan wrapping karakter */
-      justify-content: center;
-    }
-
-    .logo-text::after {
+    .section-title::after {
       content: '';
       position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--primary), transparent);
-      border-radius: 3px;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
     }
 
-    .logo-text .char {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-      color: var(--primary);
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto 40px;
+      font-size: 1.1rem;
     }
 
-    /* Character animation delays */
-    .logo-text .char:nth-child(1) { animation-delay: 0.1s; }
-    .logo-text .char:nth-child(2) { animation-delay: 0.2s; }
-    .logo-text .char:nth-child(3) { animation-delay: 0.3s; }
-    .logo-text .char:nth-child(4) { animation-delay: 0.4s; }
-    .logo-text .char:nth-child(5) { animation-delay: 0.5s; }
-    .logo-text .char:nth-child(6) { animation-delay: 0.6s; }
-    .logo-text .char:nth-child(7) { animation-delay: 0.7s; }
-    .logo-text .char:nth-child(8) { animation-delay: 0.8s; }
-    .logo-text .char:nth-child(9) { animation-delay: 0.9s; }
-    .logo-text .char:nth-child(10) { animation-delay: 1.0s; }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0) rotateX(0);
-      }
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    .btn-login {
-      margin-top: 20px;
+    .btn {
+      display: inline-block;
       padding: 14px 32px;
       font-size: 1.1rem;
       border: none;
@@ -156,22 +185,23 @@
       color: #000;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: var(--transition);
       box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
 
-    .btn-login:hover {
+    .btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
     }
 
-    .btn-login:active {
+    .btn:active {
       transform: translateY(1px);
     }
 
-    .btn-login::after {
+    .btn::after {
       content: '';
       position: absolute;
       top: 0;
@@ -182,21 +212,116 @@
       transition: 0.5s;
     }
 
-    .btn-login:hover::after {
+    .btn:hover::after {
       left: 100%;
     }
 
-    /* Navigation */
-    nav {
-      margin-top: 30px;
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      box-shadow: none;
     }
 
+    .btn-secondary:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-large {
+      padding: 16px 40px;
+      font-size: 1.2rem;
+    }
+
+    .btn-small {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+      padding: 20px 0;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border-bottom: 3px solid var(--primary);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled {
+      padding: 10px 0;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Mengurangi jarak antara logo dan teks */
+  position: relative;
+}
+
+.logo-f {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  object-fit: contain;
+  border: 2px solid var(--primary);
+  padding: 3px;
+  background: rgba(0, 0, 0, 0.7);
+  transition: var(--transition);
+      animation: fadeInScale 0.8s ease-out forwards;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+
+    .logo-f:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
+    }
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  line-height: 1; /* Memastikan teks tidak memiliki line-height ekstra */
+  margin-top: -3px; /* Sedikit adjustment untuk alignment vertikal */
+      position: relative;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--primary);
+    width: 0;
+    animation: typing 1.5s steps(9) 0.5s forwards, blink-caret 0.75s step-end 5;
+
+}
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Navigation */
     nav ul {
       display: flex;
-      justify-content: center;
       list-style: none;
-      gap: 30px;
-      flex-wrap: wrap;
+      gap: 25px;
     }
 
     nav ul li {
@@ -207,10 +332,9 @@
       color: var(--text-secondary);
       text-decoration: none;
       font-weight: 500;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      padding: 8px 12px;
-      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+      padding: 8px 0;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -218,11 +342,10 @@
 
     nav ul li a:hover {
       color: var(--primary);
-      background: rgba(255, 215, 0, 0.1);
     }
 
     nav ul li a i {
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
 
     nav ul li::after {
@@ -240,39 +363,136 @@
       width: 100%;
     }
 
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    /* Mobile Navigation */
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--secondary);
+        z-index: 1000;
+        transition: var(--transition);
+        padding-top: 80px;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+      }
+      
+      nav.active {
+        left: 0;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        padding: 0 20px;
+      }
+      
+      nav ul li a {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      nav ul li::after {
+        display: none;
+      }
+      
+      .header-actions {
+        display: none;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 150px 0 100px;
+      text-align: center;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('hero-bg.jpg') no-repeat center center/cover;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
     /* Slider Styles */
-.swiper-container {
-  padding: 30px 0;
-  background: linear-gradient(180deg, #000 0%, #121212 100%);
-  position: relative;
-}
+    .swiper-container {
+      padding: 30px 0;
+      background: linear-gradient(180deg, #000 0%, #121212 100%);
+      position: relative;
+      margin-top: 50px;
+    }
 
-.swiper {
-  width: 80%;
-  max-height: 400px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
+    .swiper {
+      width: 80%;
+      max-height: 400px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
 
-.swiper-slide {
-  width: 100%;
-  height: auto;
-  max-height: 400px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-  transition: transform 0.3s ease;
-  position: relative;
-}
+    .swiper:hover {
+      box-shadow: var(--box-shadow-hover);
+    }
 
-.swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: 20px;
-}
+    .swiper-slide {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+
+    .swiper-slide:hover img {
+      transform: scale(1.03);
+    }
 
     .swiper-slide::after {
       content: '';
@@ -282,7 +502,7 @@
       width: 100%;
       height: 40%;
       background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-      border-radius: 0 0 20px 20px;
+      border-radius: 0 0 var(--border-radius) var(--border-radius);
     }
 
     .swiper-button-prev,
@@ -293,7 +513,7 @@
       height: 50px;
       border-radius: 50%;
       backdrop-filter: blur(5px);
-      transition: all 0.3s ease;
+      transition: var(--transition);
     }
 
     .swiper-button-prev:hover,
@@ -307,7 +527,7 @@
       opacity: 0.7;
       width: 12px;
       height: 12px;
-      transition: all 0.3s ease;
+      transition: var(--transition);
     }
 
     .swiper-pagination-bullet-active {
@@ -316,45 +536,105 @@
       transform: scale(1.2);
     }
 
-    /* Game Cards */
-    .container {
+    /* Stats Section */
+    .stats {
+      background: linear-gradient(135deg, #121212 0%, #000 100%);
+      padding: 60px 0;
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .stats-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+      min-width: 200px;
+      flex: 1;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 5px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 80px 0;
+      background: #000;
+    }
+
+    .features-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: var(--box-shadow);
+      border: 2px solid transparent;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--box-shadow-hover);
+      border-color: var(--primary);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .feature-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .feature-description {
+      color: var(--text-secondary);
+    }
+
+    /* Game Cards Section */
+    .games {
+      padding: 80px 0;
+      background: linear-gradient(180deg, #000 0%, #121212 100%);
+    }
+
+    .games-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 30px;
-      padding: 50px 5%;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      grid-column: 1 / -1;
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 2.5rem;
-      color: var(--primary);
-      position: relative;
-      display: inline-block;
-      width: 100%;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 3px;
-      background: var(--primary);
-      border-radius: 3px;
     }
 
     .game-card {
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: var(--transition);
       background: var(--card-bg);
-      border-radius: 16px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
       overflow: hidden;
       text-decoration: none;
       border: 2px solid transparent;
@@ -375,7 +655,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+      background: linear-gradient(45deg, transparent, var(--primary-light), transparent);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
@@ -388,8 +668,8 @@
       width: 100%;
       aspect-ratio: 16 / 9;
       object-fit: cover;
-      border-radius: 16px 16px 0 0;
-      transition: all 0.4s ease;
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+      transition: var(--transition);
     }
 
     .game-card:hover img {
@@ -424,17 +704,222 @@
       position: absolute;
       top: -15px;
       right: 20px;
-      background: var(--primary);
-      color: #000;
       padding: 5px 15px;
       border-radius: 20px;
       font-weight: 600;
       font-size: 0.8rem;
       box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+      z-index: 1;
+    }
+
+    .badge-terlaris {
+      background: var(--primary);
+      color: #000;
+    }
+
+    .badge-promo {
+      background: var(--accent);
+      color: white;
+    }
+
+    .badge-baru {
+      background: var(--success);
+      color: white;
+    }
+
+    .badge-hot {
+      background: var(--error);
+      color: white;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      padding: 80px 0;
+      background: linear-gradient(180deg, #121212 0%, #000 100%);
+    }
+
+    .testimonials-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      box-shadow: var(--box-shadow);
+      border-top: 3px solid var(--primary);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--box-shadow-hover);
+    }
+
+    .testimonial-rating {
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .testimonial-text::before,
+    .testimonial-text::after {
+      content: '"';
+      font-size: 2rem;
+      color: var(--primary);
+      opacity: 0.5;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+    }
+
+    .author-info {
+      text-align: left;
+    }
+
+    .author-name {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .author-game {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* FAQ Section */
+    .faq {
+      padding: 80px 0;
+      background: #000;
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: 15px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      background: var(--card-bg);
+      box-shadow: var(--box-shadow);
+    }
+
+    .faq-question {
+      padding: 20px;
+      background: var(--card-bg);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .faq-question:hover {
+      color: var(--primary);
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .faq-question.active::after {
+      content: '-';
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .faq-answer.show {
+      padding: 20px;
+      max-height: 500px;
+    }
+
+    /* CTA Section */
+    .cta {
+      padding: 100px 0;
+      text-align: center;
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('cta-bg.jpg') no-repeat center center/cover;
+      position: relative;
+    }
+
+    .cta-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    .cta-description {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    /* Payment Methods */
+    .payment-methods {
+      padding: 60px 0;
+      background: linear-gradient(180deg, #000 0%, #121212 100%);
+    }
+
+    .payment-methods-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .payment-method {
+      width: 80px;
+      height: 50px;
+      object-fit: contain;
+      filter: grayscale(30%);
+      transition: var(--transition);
+      background: white;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .payment-method:hover {
+      filter: grayscale(0);
+      transform: scale(1.1);
     }
 
     /* Modal Styles */
-    #authModal {
+    .modal {
       display: none;
       position: fixed;
       top: 0;
@@ -450,15 +935,15 @@
       transition: opacity 0.3s ease;
     }
 
-    #authModal.show {
+    .modal.show {
       display: flex;
       opacity: 1;
     }
 
-    #authModal .modal-content {
+    .modal-content {
       background: var(--modal-bg);
       padding: 40px;
-      border-radius: 20px;
+      border-radius: var(--border-radius);
       width: 90%;
       max-width: 450px;
       color: white;
@@ -469,24 +954,26 @@
       border: 1px solid rgba(255, 215, 0, 0.2);
     }
 
-    #authModal.show .modal-content {
+    .modal.show .modal-content {
       transform: translateY(0);
     }
 
-    #authModal h2 {
+    .modal h2 {
       text-align: center;
       margin-bottom: 25px;
       color: var(--primary);
       font-size: 1.8rem;
     }
 
-    #authModal label {
+    .modal label {
       display: block;
       margin-bottom: 8px;
       color: var(--text-secondary);
     }
 
-    #authModal input {
+    .modal input,
+    .modal textarea,
+    .modal select {
       width: 100%;
       padding: 12px 15px;
       margin-bottom: 20px;
@@ -495,17 +982,19 @@
       background: var(--input-bg);
       color: var(--text);
       font-size: 1rem;
-      transition: all 0.3s ease;
+      transition: var(--transition);
       border-left: 3px solid transparent;
     }
 
-    #authModal input:focus {
+    .modal input:focus,
+    .modal textarea:focus,
+    .modal select:focus {
       outline: none;
       border-left: 3px solid var(--primary);
       box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
     }
 
-    #authModal button[type="submit"] {
+    .modal button[type="submit"] {
       width: 100%;
       padding: 14px;
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -515,16 +1004,16 @@
       border-radius: 8px;
       cursor: pointer;
       font-size: 1rem;
-      transition: all 0.3s ease;
+      transition: var(--transition);
       margin-top: 10px;
     }
 
-    #authModal button[type="submit"]:hover {
+    .modal button[type="submit"]:hover {
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
     }
 
-    #authModal .close-btn {
+    .close-btn {
       position: absolute;
       top: 15px;
       right: 20px;
@@ -534,11 +1023,11 @@
       transition: transform 0.3s ease;
     }
 
-    #authModal .close-btn:hover {
+    .close-btn:hover {
       transform: rotate(90deg);
     }
 
-    #authModal a {
+    .modal a {
       color: var(--primary);
       text-decoration: none;
       display: block;
@@ -547,27 +1036,64 @@
       transition: color 0.3s ease;
     }
 
-    #authModal a:hover {
+    .modal a:hover {
       color: var(--text);
       text-decoration: underline;
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--success);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 350px;
+    }
+
+    .notification.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .notification.error {
+      background: var(--error);
+    }
+
+    .notification.warning {
+      background: var(--warning);
+    }
+
+    .notification.info {
+      background: var(--info);
+    }
+
+    .notification-icon {
+      font-size: 1.2rem;
     }
 
     /* Footer */
     footer {
       background: linear-gradient(180deg, #121212 0%, #000 100%);
-      padding: 40px 5%;
-      text-align: center;
+      padding: 60px 0 0;
       border-top: 1px solid rgba(255, 215, 0, 0.2);
-      margin-top: 50px;
     }
 
     .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      text-align: left;
+      gap: 40px;
+      margin-bottom: 40px;
     }
 
     .footer-column h3 {
@@ -592,7 +1118,7 @@
       color: var(--text-secondary);
       margin-bottom: 10px;
       display: block;
-      transition: color 0.3s ease;
+      transition: var(--transition);
       text-decoration: none;
     }
 
@@ -615,7 +1141,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s ease;
+      transition: var(--transition);
     }
 
     .social-links a:hover {
@@ -625,362 +1151,1014 @@
     }
 
     .copyright {
-      margin-top: 40px;
-      padding-top: 20px;
+      padding: 20px 0;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       color: var(--text-secondary);
       font-size: 0.9rem;
+      text-align: center;
     }
 
-    /* Floating Particles */
-    .particles {
+    /* Back to Top Button */
+    .back-to-top {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 999;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
 
-    .particle {
-      position: absolute;
-      background: rgba(255, 215, 0, 0.5);
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      background: var(--primary-dark);
+    }
+
+    /* New Loyalty Program Section */
+    .loyalty-program {
+      padding: 80px 0;
+      background: linear-gradient(180deg, #121212 0%, #000 100%);
+    }
+
+    .loyalty-tiers {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tier-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: var(--box-shadow);
+      flex: 1;
+      min-width: 250px;
+      max-width: 300px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tier-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--box-shadow-hover);
+    }
+
+    .tier-badge {
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .bronze {
+      background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%);
+      color: white;
+    }
+
+    .silver {
+      background: linear-gradient(135deg, #C0C0C0 0%, #A8A8A8 100%);
+      color: #000;
+    }
+
+    .gold {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #000;
+    }
+
+    .platinum {
+      background: linear-gradient(135deg, #E5E4E2 0%, #BEC0C2 100%);
+      color: #000;
+    }
+
+    .tier-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .tier-requirements {
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+
+    .tier-benefits {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 25px;
+    }
+
+    .tier-benefits li {
+      padding: 8px 0;
+      color: var(--text-secondary);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tier-benefits li:last-child {
+      border-bottom: none;
+    }
+
+    .tier-benefits li i {
+      color: var(--primary);
+    }
+
+    /* Live Support Button */
+    .live-support {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 999;
+    }
+
+    .support-btn {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: var(--transition);
+    }
+
+    .support-btn:hover {
+      transform: scale(1.1);
+      background: var(--primary-dark);
+    }
+
+    .support-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      width: 25px;
+      height: 25px;
+      background: var(--error);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    /* Black headset icon */
+    .black-headset {
+      color: #000 !important;
     }
 
     /* Responsive Design */
+    @media (max-width: 1200px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      .section-title {
+        font-size: 2.2rem;
+      }
+    }
+
     @media (max-width: 1024px) {
       .swiper {
         width: 90%;
       }
       
       .logo-text {
-        font-size: 2.8rem;
+        font-size: 1.6rem;
       }
       
-      .logo-f {
-        width: 70px;
-        height: 70px;
+      .hero {
+        padding: 130px 0 80px;
+      }
+      
+      .section {
+        padding: 60px 0;
       }
     }
 
     @media (max-width: 768px) {
       .container {
+        padding: 0 15px;
+      }
+      
+      .games-container,
+      .features-container,
+      .testimonials-container {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        padding: 40px 5%;
       }
       
       nav ul {
         gap: 15px;
       }
       
-      .logo-text {
-        font-size: 2.2rem;
-      }
-      
-      .logo-f {
-        width: 60px;
-        height: 60px;
-      }
-      
       .section-title {
         font-size: 2rem;
       }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        padding: 25px 15px 15px;
+      
+      .stat-item {
+        min-width: 150px;
       }
       
-      .logo-wrapper {
-        flex-direction: row; /* Tetap horizontal */
-        flex-wrap: wrap;
-        gap: 8px;
-        justify-content: center;
+      .stat-number {
+        font-size: 2rem;
       }
       
-      .logo-text {
-        font-size: 1.8rem; /* Ukuran lebih kecil */
-        line-height: 1.2;
-        justify-content: center;
-        margin-top: 5px;
+      .hero-title {
+        font-size: 2.5rem;
       }
       
-      .logo-text::after {
-        bottom: -5px;
+      .hero-subtitle {
+        font-size: 1.1rem;
       }
       
-      .logo-f {
-        width: 50px;
-        height: 50px;
-        margin-bottom: 0;
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        height: 100vh;
+        background: var(--secondary);
+        z-index: 1000;
+        transition: var(--transition);
+        padding-top: 80px;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+      }
+      
+      nav.active {
+        left: 0;
       }
       
       nav ul {
-        gap: 8px;
+        flex-direction: column;
+        padding: 0 20px;
       }
       
       nav ul li a {
-        font-size: 0.85rem;
-        padding: 5px 8px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
       
-      .btn-login {
-        padding: 12px 25px;
-        font-size: 1rem;
-        margin-top: 15px;
+      nav ul li::after {
+        display: none;
+      }
+      
+      .live-support {
+        bottom: 20px;
+        left: 20px;
+      }
+      
+      .support-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+      
+      .header-actions {
+        display: none;
+      }
+    }
+
+    @media (max-width: 576px) {
+      header {
+        padding: 15px 0;
+      }
+      
+      .logo-wrapper {
+        gap: 8px;
+      }
+      
+      .logo-text {
+        font-size: 1.4rem;
+      }
+      
+      .logo-f {
+        width: 40px;
+        height: 40px;
       }
       
       .swiper {
         width: 95%;
       }
       
-      .container {
-        grid-template-columns: 1fr;
+      .hero {
+        padding: 100px 0 60px;
       }
       
-      #authModal .modal-content {
-        padding: 30px 20px;
+      .hero-title {
+        font-size: 2rem;
       }
       
-      /* Animasi karakter di mobile - lebih pendek */
-      .logo-text .char:nth-child(n+6) {
-        animation-delay: 0.4s !important;
+      .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
       }
-    }
-    
-    /* Perbaikan khusus untuk layar sangat kecil */
-    @media (max-width: 360px) {
-      .logo-text {
+      
+      .btn {
+        width: 100%;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .section-title::after {
+        height: 3px;
+        bottom: -10px;
+      }
+      
+      .stat-item {
+        min-width: 120px;
+        padding: 10px;
+      }
+      
+      .stat-number {
         font-size: 1.5rem;
       }
       
-      .logo-f {
-        width: 45px;
-        height: 45px;
+      .modal-content {
+        padding: 30px 20px;
       }
       
-      nav ul li a {
-        font-size: 0.8rem;
+      .back-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .live-support {
+        bottom: 15px;
+        left: 15px;
+      }
+      
+      .support-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
       }
     }
+    
+    @media (max-width: 400px) {
+      .logo-text {
+        font-size: 1.2rem;
+      }
+      
+      .logo-f {
+        width: 35px;
+        height: 35px;
+      }
+      
+      .hero-title {
+        font-size: 1.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.6rem;
+      }
+      
+      .games-container,
+      .features-container,
+      .testimonials-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .payment-method {
+        width: 60px;
+        height: 40px;
+      }
+
+    }
+
+      @keyframes fadeInScale {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary) }
+  }
   </style>
 </head>
 
 <body>
-  <!-- Floating Particles Background -->
-  <div class="particles" id="particles"></div>
+  <!-- Back to Top Button -->
+  <div class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
+    <i class="fas fa-arrow-up"></i>
+  </div>
 
-  <header>
-    <div class="logo-wrapper">
-      <img src="logo.png" alt="Fachri Store Logo" class="logo-f" />
-      <div class="logo-text">
-        <span class="char">a</span>
-        <span class="char">c</span>
-        <span class="char">h</span>
-        <span class="char">r</span>
-        <span class="char">i</span>
-        <span class="char">S</span>
-        <span class="char">t</span>
-        <span class="char">o</span>
-        <span class="char">r</span>
-        <span class="char">e</span>
+  <header id="mainHeader">
+    <div class="container header-container">
+      <div class="logo-wrapper">
+        <img src="logo.png" alt="Fachri Store Logo" class="logo-f" loading="lazy" width="50" height="50">
+        <div class="logo-text">ACHRISTORE</div>
+      </div>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <nav id="mainNav">
+        <ul>
+          <li><a href="#"><i class="fas fa-home"></i> Beranda</a></li>
+          <li><a href="#games"><i class="fas fa-gamepad"></i> Top Up Game</a></li>
+          <li><a href="cek_transaksi.html"><i class="fas fa-receipt"></i> Cek Transaksi</a></li>
+          <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+          <li><a href="promo.html"><i class="fas fa-gift"></i> Promo</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-small" onclick="openLoginModal()" aria-label="Login button">
+          <i class="fas fa-user"></i> Masuk
+        </button>
       </div>
     </div>
-
-    <button class="btn-login" onclick="openLoginModal()">
-      <i class="fas fa-user"></i> Masuk / Daftar
-    </button>
-
-    <nav>
-      <ul>
-        <li><a href="#"><i class="fas fa-home"></i> Beranda</a></li>
-        <li><a href="#"><i class="fas fa-gamepad"></i> Top Up Game</a></li>
-        <li><a href="cek_transaksi.html"><i class="fas fa-receipt"></i> Cek Transaksi</a></li>
-        <li><a href="contact.html"><i class="fas fa-headset"></i> Kontak</a></li>
-        <li><a href="promo.html"><i class="fas fa-gift"></i> Promo</a></li>
-      </ul>
-    </nav>
   </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1 class="hero-title">Top Up Game Termurah & Terpercaya</h1>
+      <p class="hero-subtitle">Dapatkan diamond, voucher, dan item game favorit Anda dengan harga termurah dan proses instan hanya di Fachri Store</p>
+      <div class="hero-buttons">
+        <a href="#games" class="btn btn-large"><i class="fas fa-gamepad"></i> Lihat Game</a>
+        <a href="promo.html" class="btn btn-large btn-secondary"><i class="fas fa-gift"></i> Promo Spesial</a>
+      </div>
+    </div>
+  </section>
 
   <!-- Promo Slider -->
   <section class="swiper-container">
-    <div class="swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <a href="MLBB.html">
-            <img src="slide1.png" alt="Promo Mobile Legends">
-          </a>
+    <div class="container">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <a href="MLBB.html">
+              <img src="slide1.png" alt="Promo Mobile Legends" loading="lazy" width="1200" height="400">
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="MLBB.html">
+              <img src="slide2.png" alt="Promo Free Fire" loading="lazy" width="1200" height="400">
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="MLBB.html">
+              <img src="slide3.png" alt="Promo PUBG Mobile" loading="lazy" width="1200" height="400">
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="MLBB.html">
+              <img src="slide4.png" alt="Promo Genshin Impact" loading="lazy" width="1200" height="400">
+            </a>
+          </div>
         </div>
-        <div class="swiper-slide">
-          <a href="MLBB.html">
-            <img src="slide2.png" alt="Promo Free Fire">
-          </a>
+        <div class="swiper-button-prev" aria-label="Previous slide"></div>
+        <div class="swiper-button-next" aria-label="Next slide"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="container stats-container">
+      <div class="stat-item">
+        <div class="stat-number" id="customerCount">10.000+</div>
+        <div class="stat-label">Pelanggan</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="transactionCount">50.000+</div>
+        <div class="stat-label">Transaksi</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="gameCount">9+</div>
+        <div class="stat-label">Game</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Layanan</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">Kenapa Memilih Fachri Store?</h2>
+      <p class="section-subtitle">Kami memberikan pengalaman terbaik untuk para gamer dengan layanan unggulan kami</p>
+      
+      <div class="features-container">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3 class="feature-title">Proses Cepat</h3>
+          <p class="feature-description">Proses top up hanya membutuhkan waktu 1-5 menit setelah pembayaran berhasil</p>
         </div>
-        <div class="swiper-slide">
-          <a href="MLBB.html">
-            <img src="slide3.png" alt="Promo PUBG Mobile">
-          </a>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-tag"></i>
+          </div>
+          <h3 class="feature-title">Harga Termurah</h3>
+          <p class="feature-description">Harga lebih murah dibandingkan toko lainnya dengan kualitas terjamin</p>
         </div>
-        <div class="swiper-slide">
-          <a href="MLBB.html">
-            <img src="slide4.png" alt="Promo Genshin Impact">
-          </a>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="feature-title">100% Aman</h3>
+          <p class="feature-description">Transaksi aman dan terjamin dengan sistem keamanan berlapis</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-headset yellow-headset"></i>
+          </div>
+          <h3 class="feature-title">CS 24 Jam</h3>
+          <p class="feature-description">Customer Service siap membantu Anda kapan saja selama 24 jam</p>
         </div>
       </div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-pagination"></div>
     </div>
   </section>
 
   <!-- Game Cards Section -->
-  <div class="container">
-    <h2 class="section-title">Pilih Game Favorit Anda</h2>
-    
-    <a href="MLBB.html?game=mlbb" class="game-card">
-      <img src="MLBB.png" alt="Mobile Legends">
-      <div class="game-info">
-        <div class="game-name">Mobile Legends</div>
-        <div class="game-price">Mulai dari Rp 5.000</div>
-        <div class="game-badge">TERLARIS</div>
+  <section class="games" id="games">
+    <div class="container">
+      <h2 class="section-title">Pilih Game Favorit Anda</h2>
+      <p class="section-subtitle">Top up diamond, voucher, dan item game favorit Anda dengan harga termurah</p>
+      
+      <div class="games-container">
+        <a href="MLBB.html?game=mlbb" class="game-card">
+          <img src="MLBB.png" alt="Mobile Legends Bang Bang" loading="lazy" width="300" height="169">
+          <div class="game-info">
+            <div class="game-name">Mobile Legends</div>
+            <div class="game-price">Mulai dari Rp 5.000</div>
+            <div class="game-badge badge-terlaris">TERLARIS</div>
+          </div>
+        </a>
+        
+        <a href="FREEFIRE.html?game=ff" class="game-card">
+          <img src="efef.png" alt="Free Fire" loading="lazy" width="300" height="169">
+          <div class="game-info">
+            <div class="game-name">Free Fire</div>
+            <div class="game-price">Mulai dari Rp 5.000</div>
+            <div class="game-badge badge-hot">HOT</div>
+          </div>
+        </a>
+        
+        <a href="PUBG.html?game=pubg" class="game-card">
+          <img src="PUBG.png" alt="PUBG Mobile" loading="lazy" width="300" height="169">
+          <div class="game-info">
+            <div class="game-name">PUBG Mobile</div>
+            <div class="game-price">Mulai dari Rp 10.000</div>
+          </div>
+        </a>
+        
+        <a href="Genshin.html?game=genshin" class="game-card">
+          <img src="kikir.png" alt="Genshin Impact" loading="lazy" width="300" height="169">
+          <div class="game-info">
+            <div class="game-name">Genshin Impact</div>
+            <div class="game-price">Mulai dari Rp 15.000</div>
+            <div class="game-badge badge-promo">PROMO</div>
+          </div>
+        </a>
+        
+        <a href="Valorant.html?game=valorant" class="game-card">
+          <img src="valorant.png" alt="Valorant" loading="lazy" width="300" height="169">
+          <div class="game-info">
+            <div class="game-name">Valorant</div>
+            <div class="game-price">Mulai dari Rp 20.000</div>
+          </div>
+        </a>
+        
+        <a href="CODM.html?game=codm" class="game-card">
+          <img src="codm.png" alt="Call of Duty Mobile" loading="lazy" width="300" height="169">
+          <div class="game-info">
+            <div class="game-name">COD Mobile</div>
+            <div class="game-price">Mulai dari Rp 10.000</div>
+          </div>
+        </a>
+        
+        <a href="Arena.html?game=arena" class="game-card">
+          <img src="arena.png" alt="Arena of Valor" loading="lazy" width="300" height="169">
+          <div class="game-info">
+            <div class="game-name">Arena of Valor</div>
+            <div class="game-price">Mulai dari Rp 5.000</div>
+          </div>
+        </a>
+        
+        <a href="Honkai.html?game=honkai" class="game-card">
+          <img src="honkai.png" alt="Honkai Impact 3rd" loading="lazy" width="300" height="169">
+          <div class="game-info">
+            <div class="game-name">Honkai Impact</div>
+            <div class="game-price">Mulai dari Rp 15.000</div>
+          </div>
+        </a>
+        
+        <a href="Roblox.html?game=roblox" class="game-card">
+          <img src="roblox.png" alt="Roblox" loading="lazy" width="300" height="169">
+          <div class="game-info">
+            <div class="game-name">Roblox</div>
+            <div class="game-price">Mulai dari Rp 10.000</div>
+            <div class="game-badge badge-baru">BARU</div>
+          </div>
+        </a>
       </div>
-    </a>
-    
-    <a href="FREEFIRE.html?game=ff" class="game-card">
-      <img src="efef.png" alt="Free Fire">
-      <div class="game-info">
-        <div class="game-name">Free Fire</div>
-        <div class="game-price">Mulai dari Rp 5.000</div>
+      
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="#" class="btn btn-large"><i class="fas fa-list"></i> Lihat Semua Game</a>
       </div>
-    </a>
-    
-    <a href="PUBG.html?game=pubg" class="game-card">
-      <img src="PUBG.png" alt="PUBG Mobile">
-      <div class="game-info">
-        <div class="game-name">PUBG Mobile</div>
-        <div class="game-price">Mulai dari Rp 10.000</div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">Apa Kata Pelanggan Kami?</h2>
+      <p class="section-subtitle">Testimoni dari ribuan pelanggan yang sudah merasakan layanan kami</p>
+      
+      <div class="testimonials-container">
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="testimonial-text">
+            Prosesnya cepat banget, ga sampe 5 menit diamond ML langsung masuk. Harganya juga paling murah dibanding tempat lain.
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Foto Rizky Pratama" class="author-avatar" loading="lazy" width="50" height="50">
+            <div class="author-info">
+              <div class="author-name">Rizky Pratama</div>
+              <div class="author-game">Mobile Legends Player</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="testimonial-text">
+            Pertama kali top up di sini dan langsung jatuh cinta. CS-nya ramah dan responsif, beneran recommended!
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Foto Dewi Lestari" class="author-avatar" loading="lazy" width="50" height="50">
+            <div class="author-info">
+              <div class="author-name">Dewi Lestari</div>
+              <div class="author-game">Genshin Impact Player</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="testimonial-text">
+            Udah langganan 2 tahun di Fachri Store, ga pernah kecewa. Kalau ada masalah langsung direspon dan dibantu.
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Foto Andika Setiawan" class="author-avatar" loading="lazy" width="50" height="50">
+            <div class="author-info">
+              <div class="author-name">Andika Setiawan</div>
+              <div class="author-game">Free Fire Player</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </a>
-    
-    <a href="Genshin.html?game=genshin" class="game-card">
-      <img src="kikir.png" alt="Genshin Impact">
-      <div class="game-info">
-        <div class="game-name">Genshin Impact</div>
-        <div class="game-price">Mulai dari Rp 15.000</div>
-        <div class="game-badge">PROMO</div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <h2 class="section-title">Pertanyaan yang Sering Diajukan</h2>
+      <p class="section-subtitle">Temukan jawaban untuk pertanyaan umum tentang layanan kami</p>
+      
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">Bagaimana cara melakukan top up di Fachri Store?</div>
+          <div class="faq-answer">
+            <p>1. Pilih game dan nominal yang ingin di-top up</p>
+            <p>2. Masukkan ID game Anda</p>
+            <p>3. Pilih metode pembayaran</p>
+            <p>4. Lakukan pembayaran</p>
+            <p>5. Diamond/item akan masuk ke akun Anda dalam 1-5 menit</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Berapa lama proses top up biasanya?</div>
+          <div class="faq-answer">
+            <p>Proses top up biasanya memakan waktu 1-5 menit setelah pembayaran berhasil. Namun dalam beberapa kasus tertentu bisa memakan waktu hingga 1 jam tergantung kondisi server game.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Apa yang harus dilakukan jika diamond tidak masuk?</div>
+          <div class="faq-answer">
+            <p>Jika diamond tidak masuk dalam waktu 1 jam, silakan hubungi Customer Service kami melalui live chat atau WhatsApp dengan menyertakan bukti pembayaran. Kami akan segera memprosesnya.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Metode pembayaran apa saja yang tersedia?</div>
+          <div class="faq-answer">
+            <p>Kami menyediakan berbagai metode pembayaran termasuk transfer bank (BCA, BRI, Mandiri, BNI), e-wallet (OVO, DANA, GoPay, LinkAja), dan minimarket (Alfamart, Indomaret).</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Apakah ada promo atau diskon khusus?</div>
+          <div class="faq-answer">
+            <p>Ya, kami sering mengadakan promo dan diskon khusus. Anda bisa cek halaman promo atau follow media sosial kami untuk mendapatkan info terbaru.</p>
+          </div>
+        </div>
       </div>
-    </a>
-    
-    <a href="Valorant.html?game=valorant" class="game-card">
-      <img src="valorant.png" alt="Valorant">
-      <div class="game-info">
-        <div class="game-name">Valorant</div>
-        <div class="game-price">Mulai dari Rp 20.000</div>
+    </div>
+  </section>
+
+  <!-- Payment Methods -->
+  <section class="payment-methods">
+    <div class="container">
+      <h2 class="section-title">Metode Pembayaran</h2>
+      <p class="section-subtitle">Kami menerima berbagai metode pembayaran untuk kemudahan transaksi Anda</p>
+      
+      <div class="payment-methods-container">
+        <img src="ovo.png" alt="OVO Payment" class="payment-method" loading="lazy" width="80" height="50">
+        <img src="dana.png" alt="DANA Payment" class="payment-method" loading="lazy" width="80" height="50">
+        <img src="gopay.png" alt="GoPay Payment" class="payment-method" loading="lazy" width="80" height="50">
+        <img src="linkaja.png" alt="LinkAja Payment" class="payment-method" loading="lazy" width="80" height="50">
+        <img src="bca.png" alt="BCA Bank" class="payment-method" loading="lazy" width="80" height="50">
+        <img src="mandiri.png" alt="Mandiri Bank" class="payment-method" loading="lazy" width="80" height="50">
+        <img src="bri.png" alt="BRI Bank" class="payment-method" loading="lazy" width="80" height="50">
+        <img src="bni.png" alt="BNI Bank" class="payment-method" loading="lazy" width="80" height="50">
+        <img src="alfamart.png" alt="Alfamart Payment" class="payment-method" loading="lazy" width="80" height="50">
+        <img src="indomaret.png" alt="Indomaret Payment" class="payment-method" loading="lazy" width="80" height="50">
       </div>
-    </a>
-    
-    <a href="CODM.html?game=codm" class="game-card">
-      <img src="codm.png" alt="COD Mobile">
-      <div class="game-info">
-        <div class="game-name">COD Mobile</div>
-        <div class="game-price">Mulai dari Rp 10.000</div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2 class="cta-title">Siap Top Up Game Favorit Anda?</h2>
+      <p class="cta-description">Dapatkan pengalaman gaming yang lebih seru dengan diamond dan item eksklusif dari Fachri Store</p>
+      <div class="hero-buttons">
+        <a href="#games" class="btn btn-large"><i class="fas fa-gamepad"></i> Top Up Sekarang</a>
+        <a href="contact.html" class="btn btn-large btn-secondary"><i class="fas fa-headset black-headset"></i> Live Chat CS</a>
       </div>
-    </a>
-    
-    <a href="Arena.html?game=arena" class="game-card">
-      <img src="arena.png" alt="Arena of Valor">
-      <div class="game-info">
-        <div class="game-name">Arena of Valor</div>
-        <div class="game-price">Mulai dari Rp 5.000</div>
+    </div>
+  </section>
+
+  <!-- New Loyalty Program Section -->
+  <section class="loyalty-program">
+    <div class="container">
+      <h2 class="section-title">Program Loyalty</h2>
+      <p class="section-subtitle">Dapatkan manfaat lebih dengan program loyalty kami</p>
+      
+      <div class="loyalty-tiers">
+        <div class="tier-card">
+          <div class="tier-badge bronze">
+            <i class="fas fa-medal"></i>
+          </div>
+          <h3 class="tier-title">Bronze</h3>
+          <p class="tier-requirements">Min. 5 transaksi</p>
+          <ul class="tier-benefits">
+            <li><i class="fas fa-check"></i> Diskon 5%</li>
+            <li><i class="fas fa-check"></i> Prioritas CS</li>
+            <li><i class="fas fa-check"></i> Update promo</li>
+          </ul>
+          <a href="#" class="btn">Pelajari Lebih Lanjut</a>
+        </div>
+        
+        <div class="tier-card">
+          <div class="tier-badge silver">
+            <i class="fas fa-medal"></i>
+          </div>
+          <h3 class="tier-title">Silver</h3>
+          <p class="tier-requirements">Min. 15 transaksi</p>
+          <ul class="tier-benefits">
+            <li><i class="fas fa-check"></i> Diskon 10%</li>
+            <li><i class="fas fa-check"></i> Prioritas CS</li>
+            <li><i class="fas fa-check"></i> Update promo</li>
+            <li><i class="fas fa-check"></i> Bonus item</li>
+          </ul>
+          <a href="#" class="btn">Pelajari Lebih Lanjut</a>
+        </div>
+        
+        <div class="tier-card">
+          <div class="tier-badge gold">
+            <i class="fas fa-medal"></i>
+          </div>
+          <h3 class="tier-title">Gold</h3>
+          <p class="tier-requirements">Min. 30 transaksi</p>
+          <ul class="tier-benefits">
+            <li><i class="fas fa-check"></i> Diskon 15%</li>
+            <li><i class="fas fa-check"></i> Prioritas CS</li>
+            <li><i class="fas fa-check"></i> Update promo</li>
+            <li><i class="fas fa-check"></i> Bonus item</li>
+            <li><i class="fas fa-check"></i> VIP support</li>
+          </ul>
+          <a href="#" class="btn">Pelajari Lebih Lanjut</a>
+        </div>
+        
+        <div class="tier-card">
+          <div class="tier-badge platinum">
+            <i class="fas fa-medal"></i>
+          </div>
+          <h3 class="tier-title">Platinum</h3>
+          <p class="tier-requirements">Min. 50 transaksi</p>
+          <ul class="tier-benefits">
+            <li><i class="fas fa-check"></i> Diskon 20%</li>
+            <li><i class="fas fa-check"></i> Prioritas CS</li>
+            <li><i class="fas fa-check"></i> Update promo</li>
+            <li><i class="fas fa-check"></i> Bonus item</li>
+            <li><i class="fas fa-check"></i> VIP support</li>
+            <li><i class="fas fa-check"></i> Hadiah eksklusif</li>
+          </ul>
+          <a href="#" class="btn">Pelajari Lebih Lanjut</a>
+        </div>
       </div>
-    </a>
-    
-    <a href="Honkai.html?game=honkai" class="game-card">
-      <img src="honkai.png" alt="Honkai Impact">
-      <div class="game-info">
-        <div class="game-name">Honkai Impact</div>
-        <div class="game-price">Mulai dari Rp 15.000</div>
-      </div>
-    </a>
-    
-    <a href="Roblox.html?game=roblox" class="game-card">
-      <img src="roblox.png" alt="Roblox">
-      <div class="game-info">
-        <div class="game-name">Roblox</div>
-        <div class="game-price">Mulai dari Rp 10.000</div>
-        <div class="game-badge">BARU</div>
-      </div>
-    </a>
-  </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
-    <div class="footer-content">
-      <div class="footer-column">
-        <h3>Tentang Kami</h3>
-        <p>Fachri Store adalah platform top up game terpercaya dengan harga termurah dan proses instan.</p>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Tentang Kami</h3>
+          <p>Fachri Store adalah platform top up game terpercaya dengan harga termurah dan proses instan sejak 2020.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Layanan</h3>
+          <a href="#">Top Up Game</a>
+          <a href="#">Voucher Game</a>
+          <a href="#">Akun Game</a>
+          <a href="#">Item Game</a>
+          <a href="#">Joki Rank</a>
+          <a href="#">Pulsa & Paket Data</a>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Bantuan</h3>
+          <a href="#">Cara Order</a>
+          <a href="#">Pembayaran</a>
+          <a href="#">Status Order</a>
+          <a href="#">FAQ</a>
+          <a href="#">Blog</a>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Informasi</h3>
+          <a href="#">Syarat & Ketentuan</a>
+          <a href="#">Kebijakan Privasi</a>
+          <a href="#">Tentang Kami</a>
+          <a href="#">Testimoni</a>
+          <a href="#">Karir</a>
+          <a href="#">Mitra</a>
         </div>
       </div>
       
-      <div class="footer-column">
-        <h3>Layanan</h3>
-        <a href="#">Top Up Game</a>
-        <a href="#">Voucher Game</a>
-        <a href="#">Akun Game</a>
-        <a href="#">Item Game</a>
+      <div class="copyright">
+        &copy; <span id="currentYear"></span> Fachri Store. All Rights Reserved.
       </div>
-      
-      <div class="footer-column">
-        <h3>Bantuan</h3>
-        <a href="#">Cara Order</a>
-        <a href="#">Pembayaran</a>
-        <a href="#">Status Order</a>
-        <a href="#">Hubungi Kami</a>
-      </div>
-      
-      <div class="footer-column">
-        <h3>Informasi</h3>
-        <a href="#">Syarat & Ketentuan</a>
-        <a href="#">Kebijakan Privasi</a>
-        <a href="#">FAQ</a>
-        <a href="#">Blog</a>
-      </div>
-    </div>
-    
-    <div class="copyright">
-      &copy; 2025 Fachri Store. All Rights Reserved.
     </div>
   </footer>
 
   <!-- Login/Register Modal -->
-  <div id="authModal">
+  <div class="modal" id="authModal">
     <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <span class="close-btn" onclick="closeModal()" aria-label="Close modal">&times;</span>
       <h2 id="modalTitle">Masuk</h2>
       <form id="authForm">
-        <label>Email:</label>
-        <input type="email" placeholder="Masukkan email Anda" required />
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" placeholder="Masukkan email Anda" required>
+        </div>
         
-        <label id="nameLabel" style="display:none;">Nama Lengkap:</label>
-        <input type="text" id="nameInput" style="display:none;" placeholder="Masukkan nama lengkap" />
+        <div class="form-group" id="nameGroup" style="display:none;">
+          <label for="name">Nama Lengkap:</label>
+          <input type="text" id="name" placeholder="Masukkan nama lengkap">
+        </div>
         
-        <label>Kata Sandi:</label>
-        <input type="password" placeholder="Masukkan kata sandi" required />
+        <div class="form-group">
+          <label for="password">Kata Sandi:</label>
+          <input type="password" id="password" placeholder="Masukkan kata sandi" required minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Harus mengandung angka, huruf besar dan kecil, minimal 8 karakter">
+        </div>
+        
+        <div class="form-group" id="confirmPasswordGroup" style="display:none;">
+          <label for="confirmPassword">Konfirmasi Kata Sandi:</label>
+          <input type="password" id="confirmPassword" placeholder="Masukkan ulang kata sandi">
+        </div>
         
         <button type="submit">
           <span id="submitText">Masuk</span>
         </button>
       </form>
       <a href="#" onclick="toggleForm(event)">Belum punya akun? Daftar</a>
+      <a href="#" style="margin-top: 10px;" onclick="showForgotPasswordModal(event)">Lupa kata sandi?</a>
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal" id="forgotPasswordModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()" aria-label="Close modal">&times;</span>
+      <h2>Lupa Kata Sandi</h2>
+      <form id="forgotPasswordForm">
+        <div class="form-group">
+          <label for="forgotEmail">Email:</label>
+          <input type="email" id="forgotEmail" placeholder="Masukkan email Anda" required>
+        </div>
+        
+        <button type="submit">Kirim Link Reset</button>
+      </form>
+      <a href="#" onclick="showLoginModal(event)">Kembali ke halaman login</a>
+    </div>
+  </div>
+
+  <!-- Notification -->
+  <div class="notification" id="notification">
+    <i class="fas fa-check-circle notification-icon"></i>
+    <span id="notificationText">Login berhasil!</span>
+  </div>
+
+  <!-- Live Support Button -->
+  <div class="live-support">
+    <div class="support-btn">
+      <a href="contact.html" aria-label="Live Support"><i class="fas fa-headset black-headset"></i></a>
+      <div class="support-badge">1</div>
     </div>
   </div>
 
@@ -1006,41 +2184,119 @@
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
+      a11y: {
+        prevSlideMessage: 'Previous slide',
+        nextSlideMessage: 'Next slide',
+      }
     });
 
-    // Modal functionality
+    // DOM Elements
     const modal = document.getElementById("authModal");
-    const nameInput = document.getElementById("nameInput");
-    const nameLabel = document.getElementById("nameLabel");
+    const forgotPasswordModal = document.getElementById("forgotPasswordModal");
+    const nameGroup = document.getElementById("nameGroup");
+    const confirmPasswordGroup = document.getElementById("confirmPasswordGroup");
     const modalTitle = document.getElementById("modalTitle");
     const submitText = document.getElementById("submitText");
+    const notification = document.getElementById("notification");
+    const notificationText = document.getElementById("notificationText");
+    const authForm = document.getElementById("authForm");
+    const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+    const backToTop = document.getElementById("backToTop");
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mainNav = document.getElementById("mainNav");
+    const mainHeader = document.getElementById("mainHeader");
     let isRegister = false;
 
+    // Set current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        mainHeader.classList.add('scrolled');
+      } else {
+        mainHeader.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    mobileMenuBtn.addEventListener('click', function() {
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', !isExpanded);
+      mainNav.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('active');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Back to top button
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Modal functions
     function openLoginModal() {
       isRegister = false;
-      nameInput.style.display = "none";
-      nameLabel.style.display = "none";
+      nameGroup.style.display = "none";
+      confirmPasswordGroup.style.display = "none";
       modalTitle.innerText = "Masuk";
       submitText.innerText = "Masuk";
+      authForm.reset();
+      closeAllModals();
       modal.classList.add("show");
+    }
+
+    function showForgotPasswordModal(e) {
+      e.preventDefault();
+      closeAllModals();
+      forgotPasswordModal.classList.add("show");
+    }
+
+    function showLoginModal(e) {
+      e.preventDefault();
+      closeAllModals();
+      openLoginModal();
     }
 
     function closeModal() {
       modal.classList.remove("show");
+      forgotPasswordModal.classList.remove("show");
+    }
+
+    function closeAllModals() {
+      document.querySelectorAll('.modal').forEach(modal => {
+        modal.classList.remove('show');
+      });
     }
 
     function toggleForm(event) {
       event.preventDefault();
       isRegister = !isRegister;
       if (isRegister) {
-        nameInput.style.display = "block";
-        nameLabel.style.display = "block";
+        nameGroup.style.display = "block";
+        confirmPasswordGroup.style.display = "block";
         modalTitle.innerText = "Daftar";
         submitText.innerText = "Daftar";
         event.target.innerText = "Sudah punya akun? Masuk";
       } else {
-        nameInput.style.display = "none";
-        nameLabel.style.display = "none";
+        nameGroup.style.display = "none";
+        confirmPasswordGroup.style.display = "none";
         modalTitle.innerText = "Masuk";
         submitText.innerText = "Masuk";
         event.target.innerText = "Belum punya akun? Daftar";
@@ -1049,76 +2305,179 @@
 
     // Close modal when clicking outside
     window.addEventListener('click', function(event) {
-      if (event.target === modal) {
+      if (event.target.classList.contains('modal')) {
         closeModal();
       }
     });
 
-    // Form submission
-    document.getElementById("authForm").addEventListener("submit", function(e) {
+    // Show notification
+    function showNotification(message, type = 'success') {
+      notificationText.innerText = message;
+      notification.className = 'notification';
+      notification.classList.add(type);
+      notification.classList.add('show');
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
+    }
+
+    // Form submission with validation
+    authForm.addEventListener("submit", function(e) {
       e.preventDefault();
-      alert(isRegister ? "Pendaftaran berhasil!" : "Login berhasil!");
-      closeModal();
-    });
-
-    // Create floating particles
-    function createParticles() {
-      const particlesContainer = document.getElementById('particles');
-      const particleCount = window.innerWidth < 768 ? 30 : 50;
       
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        
-        // Random size between 1px and 3px
-        const size = Math.random() * 2 + 1;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        
-        // Random position
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
-        
-        // Random opacity
-        particle.style.opacity = Math.random() * 0.5 + 0.1;
-        
-        // Animation
-        const duration = Math.random() * 20 + 10;
-        particle.style.animation = `float ${duration}s infinite linear`;
-        
-        particlesContainer.appendChild(particle);
-      }
-    }
-
-    // Initialize particles when DOM is loaded
-    document.addEventListener('DOMContentLoaded', createParticles);
-
-    // Add scroll animation to elements
-    function animateOnScroll() {
-      const elements = document.querySelectorAll('.game-card, .footer-column');
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const name = isRegister ? document.getElementById('name').value : null;
+      const confirmPassword = isRegister ? document.getElementById('confirmPassword').value : null;
       
-      elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.2;
-        
-        if (elementPosition < screenPosition) {
-          element.style.opacity = '1';
-          element.style.transform = 'translateY(0)';
+      // Simple validation
+      if (isRegister) {
+        if (!name || name.length < 3) {
+          showNotification("Nama harus minimal 3 karakter", "error");
+          return;
         }
+        
+        if (password !== confirmPassword) {
+          showNotification("Kata sandi tidak cocok", "error");
+          return;
+        }
+      }
+      
+      if (!email.includes('@') || !email.includes('.')) {
+        showNotification("Email tidak valid", "error");
+        return;
+      }
+      
+      if (password.length < 8) {
+          showNotification("Password harus minimal 8 karakter", "error");
+          return;
+        }
+        
+        const message = isRegister ? "Pendaftaran berhasil!" : "Login berhasil!";
+        showNotification(message);
+        
+        // Simulate API call
+        setTimeout(() => {
+          closeModal();
+          authForm.reset();
+        }, 1500);
       });
-    }
 
-    // Set initial state for animation
-    document.querySelectorAll('.game-card, .footer-column').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'all 0.6s ease';
-    });
+      // Forgot password form
+      forgotPasswordForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('forgotEmail').value;
+        
+        if (!email.includes('@') || !email.includes('.')) {
+          showNotification("Email tidak valid", "error");
+          return;
+        }
+        
+        showNotification("Link reset password telah dikirim ke email Anda", "info");
+        
+        setTimeout(() => {
+          closeModal();
+          forgotPasswordForm.reset();
+          openLoginModal();
+        }, 2000);
+      });
 
-    // Add scroll event listener
-    window.addEventListener('scroll', animateOnScroll);
-    // Trigger once on load
-    animateOnScroll();
+      // FAQ accordion
+      document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', function() {
+          const answer = this.nextElementSibling;
+          const isActive = this.classList.contains('active');
+          
+          // Close all other items
+          document.querySelectorAll('.faq-question').forEach(q => {
+            if (q !== this) {
+              q.classList.remove('active');
+              q.nextElementSibling.classList.remove('show');
+            }
+          });
+          
+          // Toggle current item
+          if (isActive) {
+            this.classList.remove('active');
+            answer.classList.remove('show');
+          } else {
+            this.classList.add('active');
+            answer.classList.add('show');
+          }
+        });
+      });
+
+      // Animate numbers with improved performance
+      function animateValue(id, start, end, duration) {
+        const obj = document.getElementById(id);
+        let startTimestamp = null;
+        
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          const value = Math.floor(progress * (end - start) + start);
+          obj.innerHTML = value.toLocaleString() + "+";
+          
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          }
+        };
+        
+        window.requestAnimationFrame(step);
+      }
+
+      // Start number animations when page loads
+      document.addEventListener('DOMContentLoaded', function() {
+        animateValue('customerCount', 0, 10000, 2000);
+        animateValue('transactionCount', 0, 50000, 2500);
+        animateValue('gameCount', 0, 50, 1500);
+      });
+
+      // Reset animation saat halaman dimuat ulang
+document.addEventListener('DOMContentLoaded', function() {
+  const logoText = document.querySelector('.logo-text');
+  const logoImg = document.querySelector('.logo-f');
+  
+  // Reset animasi
+  logoText.style.animation = 'none';
+  logoText.style.width = '0';
+  logoText.style.borderRight = '2px solid var(--primary)';
+  logoImg.style.animation = 'none';
+  logoImg.style.opacity = '0';
+  logoImg.style.transform = 'scale(0.8)';
+  
+  // Trigger reflow
+  void logoText.offsetWidth;
+  void logoImg.offsetWidth;
+  
+  // Jalankan animasi
+  logoText.style.animation = 'typing 1.5s steps(9) 0.5s forwards, blink-caret 0.75s step-end 5';
+  logoImg.style.animation = 'fadeInScale 0.8s ease-out forwards';
+});
+
+// Jika ingin animasi berulang saat hover (opsional)
+document.querySelector('.logo-wrapper').addEventListener('mouseenter', function() {
+  const logoText = this.querySelector('.logo-text');
+  const logoImg = this.querySelector('.logo-f');
+  
+  // Reset animasi
+  logoText.style.animation = 'none';
+  logoText.style.width = '0';
+  logoText.style.borderRight = '2px solid var(--primary)';
+  logoImg.style.animation = 'none';
+  logoImg.style.opacity = '0';
+  logoImg.style.transform = 'scale(0.8)';
+  
+  // Trigger reflow
+  void logoText.offsetWidth;
+  void logoImg.offsetWidth;
+  
+  // Jalankan animasi
+  logoText.style.animation = 'typing 1.5s steps(9) 0.5s forwards, blink-caret 0.75s step-end 5';
+  logoImg.style.animation = 'fadeInScale 0.8s ease-out forwards';
+});
   </script>
 </body>
 </html>
