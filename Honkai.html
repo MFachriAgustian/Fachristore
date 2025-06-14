@@ -235,7 +235,7 @@
 
     .payment-options {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
       gap: 15px;
       margin-top: 15px;
     }
@@ -251,11 +251,17 @@
       transition: all 0.3s ease;
       position: relative;
       border: 2px solid transparent;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .payment-option img {
-      width: 100%;
-      height: auto;
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
       display: block;
       border-radius: 8px;
     }
@@ -264,6 +270,7 @@
       border-color: var(--primary);
       box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
       transform: translateY(-5px);
+      background: rgba(255, 215, 0, 0.1);
     }
 
     .payment-option::after {
@@ -334,7 +341,7 @@
       }
       
       .payment-options {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
@@ -350,6 +357,10 @@
       
       h2 {
         font-size: 1.5rem;
+      }
+      
+      .payment-options {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
@@ -425,7 +436,7 @@
     <div class="form-group">
       <label for="uid">ID Pengguna</label>
       <div class="input-wrapper">
-        <input type="text" id="uid" placeholder="ID Pengguna" />
+        <input type="text" id="uid" placeholder="Masukkan ID Pengguna" required />
         <i class="fas fa-user input-icon"></i>
       </div>
     </div>
@@ -433,7 +444,7 @@
     <div class="form-group">
       <label>Pilih Jumlah Crystals</label>
       <div class="diamond-options">
-        <input type="radio" name="diamond" id="d1" value="330 Crystals - Rp50.000" data-diamond="330" data-price="50000" />
+        <input type="radio" name="diamond" id="d1" value="330 Crystals - Rp50.000" data-diamond="330" data-price="50000" required />
         <label for="d1" class="diamond-option">
           <img src="crystal1.png" class="diamond-icon" alt="Crystal Icon" />
           <div class="diamond-info">
@@ -476,7 +487,7 @@
     <div class="form-group">
       <label for="jumlah">Jumlah Pembelian</label>
       <div class="input-wrapper">
-        <input type="number" id="jumlah" min="1" value="1" />
+        <input type="number" id="jumlah" min="1" value="1" required />
         <i class="fas fa-shopping-cart input-icon"></i>
       </div>
     </div>
@@ -484,7 +495,7 @@
     <div class="form-group">
       <label for="whatsapp">Nomor WhatsApp</label>
       <div class="input-wrapper">
-        <input type="tel" id="whatsapp" placeholder="08xxxxxxxxxx" />
+        <input type="tel" id="whatsapp" placeholder="08xxxxxxxxxx" required />
         <i class="fab fa-whatsapp input-icon"></i>
       </div>
     </div>
@@ -500,7 +511,7 @@
     <div class="form-group">
       <label>Pilih Metode Pembayaran</label>
       <div class="payment-options">
-        <input type="radio" name="metode" id="dana" value="Dana" />
+        <input type="radio" name="metode" id="dana" value="Dana" required />
         <label for="dana" class="payment-option"><img src="dana.png" alt="Dana" /></label>
 
         <input type="radio" name="metode" id="ovo" value="OVO" />
@@ -531,8 +542,32 @@
       const diamondRadio = document.querySelector('input[name="diamond"]:checked');
       const metodeRadio = document.querySelector('input[name="metode"]:checked');
 
-      if (!id || !diamondRadio || !jumlah || !whatsapp || !metodeRadio) {
-        showAlert('error', 'Harap lengkapi semua data yang wajib diisi.');
+      // Basic validation
+      if (!id) {
+        showAlert('error', 'Harap masukkan ID Pengguna');
+        document.getElementById('uid').focus();
+        return;
+      }
+
+      if (!diamondRadio) {
+        showAlert('error', 'Harap pilih jumlah Crystals');
+        return;
+      }
+
+      if (!jumlah || parseInt(jumlah) < 1) {
+        showAlert('error', 'Jumlah pembelian minimal 1');
+        document.getElementById('jumlah').focus();
+        return;
+      }
+
+      if (!whatsapp) {
+        showAlert('error', 'Harap masukkan nomor WhatsApp');
+        document.getElementById('whatsapp').focus();
+        return;
+      }
+
+      if (!metodeRadio) {
+        showAlert('error', 'Harap pilih metode pembayaran');
         return;
       }
 
@@ -628,6 +663,9 @@
       // Remove any existing modals
       const modal = document.querySelector('.modal-overlay');
       if (modal) modal.remove();
+      
+      // Reset form
+      document.querySelector('form')?.reset();
     }
 
     function showAlert(type, message) {
