@@ -148,18 +148,18 @@
       color: var(--primary);
     }
 
-    .diamond-options {
+    .vp-options {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 15px;
       margin-top: 15px;
     }
 
-    .diamond-options input[type='radio'] {
+    .vp-options input[type='radio'] {
       display: none;
     }
 
-    .diamond-option {
+    .vp-option {
       display: flex;
       align-items: center;
       gap: 12px;
@@ -174,7 +174,7 @@
       overflow: hidden;
     }
 
-    .diamond-option::before {
+    .vp-option::before {
       content: '';
       position: absolute;
       top: 0;
@@ -185,37 +185,37 @@
       transition: 0.5s;
     }
 
-    .diamond-option:hover::before {
+    .vp-option:hover::before {
       left: 100%;
     }
 
-    .diamond-options input[type='radio']:checked + .diamond-option {
+    .vp-options input[type='radio']:checked + .vp-option {
       background: rgba(255, 215, 0, 0.1);
       border-color: var(--primary);
       box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
     }
 
-    .diamond-options input[type='radio']:checked + .diamond-option .diamond-icon {
+    .vp-options input[type='radio']:checked + .vp-option .vp-icon {
       transform: scale(1.2) rotate(15deg);
     }
 
-    .diamond-icon {
+    .vp-icon {
       width: 30px;
       height: 30px;
       transition: all 0.3s ease;
     }
 
-    .diamond-info {
+    .vp-info {
       flex: 1;
     }
 
-    .diamond-amount {
+    .vp-amount {
       font-weight: 700;
       color: var(--primary);
       font-size: 1.1rem;
     }
 
-    .diamond-price {
+    .vp-price {
       font-size: 0.9rem;
       color: var(--text-secondary);
     }
@@ -235,8 +235,8 @@
 
     .payment-options {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 10px;
       margin-top: 15px;
     }
 
@@ -246,40 +246,30 @@
 
     .payment-option {
       cursor: pointer;
-      border-radius: 10px;
+      border-radius: 8px;
       overflow: hidden;
       transition: all 0.3s ease;
       position: relative;
       border: 2px solid transparent;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.1);
     }
 
     .payment-option img {
-      width: 100%;
-      height: auto;
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
       display: block;
-      border-radius: 8px;
     }
 
     .payment-options input[type='radio']:checked + .payment-option {
       border-color: var(--primary);
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-      transform: translateY(-5px);
-    }
-
-    .payment-option::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.3);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .payment-options input[type='radio']:checked + .payment-option::after {
-      opacity: 1;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+      transform: translateY(-3px);
+      background: rgba(255,215,0,0.1);
     }
 
     button {
@@ -323,18 +313,17 @@
       left: 100%;
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
       .container {
         padding: 25px 20px;
       }
       
-      .diamond-options {
+      .vp-options {
         grid-template-columns: 1fr;
       }
       
       .payment-options {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
@@ -351,15 +340,17 @@
       h2 {
         font-size: 1.5rem;
       }
+      
+      .payment-options {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
-    /* Animation for form elements */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Payment confirmation modal */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -382,7 +373,6 @@
       width: 90%;
       border: 1px solid var(--primary);
       box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-      position: relative;
     }
 
     .payment-instruction {
@@ -432,41 +422,41 @@
 
     <div class="form-group">
       <label>Pilih Jumlah Valorant Points</label>
-      <div class="diamond-options">
-        <input type="radio" name="diamond" id="d1" value="125 VP - Rp15.000" data-vp="125" data-price="15000" />
-        <label for="d1" class="diamond-option">
-          <img src="vp.png" class="diamond-icon" alt="Diamond Icon" />
-          <div class="diamond-info">
-            <div class="diamond-amount">125 VP</div>
-            <div class="diamond-price">Rp15.000</div>
+      <div class="vp-options">
+        <input type="radio" name="vp" id="v1" value="125 VP - Rp15.000" data-vp="125" data-price="15000" />
+        <label for="v1" class="vp-option">
+          <img src="vp.png" class="vp-icon" alt="VP Icon" />
+          <div class="vp-info">
+            <div class="vp-amount">125 VP</div>
+            <div class="vp-price">Rp15.000</div>
           </div>
           <div class="badge">HOT</div>
         </label>
 
-        <input type="radio" name="diamond" id="d2" value="420 VP - Rp50.000" data-vp="420" data-price="50000" />
-        <label for="d2" class="diamond-option">
-          <img src="vp.png" class="diamond-icon" alt="Diamond Icon" />
-          <div class="diamond-info">
-            <div class="diamond-amount">420 VP</div>
-            <div class="diamond-price">Rp50.000</div>
+        <input type="radio" name="vp" id="v2" value="420 VP - Rp50.000" data-vp="420" data-price="50000" />
+        <label for="v2" class="vp-option">
+          <img src="vp.png" class="vp-icon" alt="VP Icon" />
+          <div class="vp-info">
+            <div class="vp-amount">420 VP</div>
+            <div class="vp-price">Rp50.000</div>
           </div>
         </label>
 
-        <input type="radio" name="diamond" id="d3" value="700 VP - Rp80.000" data-vp="700" data-price="80000" />
-        <label for="d3" class="diamond-option">
-          <img src="vp.png" class="diamond-icon" alt="Diamond Icon" />
-          <div class="diamond-info">
-            <div class="diamond-amount">700 VP</div>
-            <div class="diamond-price">Rp80.000</div>
+        <input type="radio" name="vp" id="v3" value="700 VP - Rp80.000" data-vp="700" data-price="80000" />
+        <label for="v3" class="vp-option">
+          <img src="vp.png" class="vp-icon" alt="VP Icon" />
+          <div class="vp-info">
+            <div class="vp-amount">700 VP</div>
+            <div class="vp-price">Rp80.000</div>
           </div>
         </label>
 
-        <input type="radio" name="diamond" id="d4" value="1375 VP - Rp150.000" data-vp="1375" data-price="150000" />
-        <label for="d4" class="diamond-option">
-          <img src="vp.png" class="diamond-icon" alt="Diamond Icon" />
-          <div class="diamond-info">
-            <div class="diamond-amount">1375 VP</div>
-            <div class="diamond-price">Rp150.000</div>
+        <input type="radio" name="vp" id="v4" value="1375 VP - Rp150.000" data-vp="1375" data-price="150000" />
+        <label for="v4" class="vp-option">
+          <img src="vp.png" class="vp-icon" alt="VP Icon" />
+          <div class="vp-info">
+            <div class="vp-amount">1375 VP</div>
+            <div class="vp-price">Rp150.000</div>
           </div>
           <div class="badge">BEST</div>
         </label>
@@ -528,22 +518,20 @@
       const jumlah = document.getElementById('jumlah').value;
       const whatsapp = document.getElementById('whatsapp').value;
       const promo = document.getElementById('promo').value;
-      const diamondRadio = document.querySelector('input[name="diamond"]:checked');
+      const vpRadio = document.querySelector('input[name="vp"]:checked');
       const metodeRadio = document.querySelector('input[name="metode"]:checked');
 
-      if (!id || !diamondRadio || !jumlah || !whatsapp || !metodeRadio) {
+      if (!id || !vpRadio || !jumlah || !whatsapp || !metodeRadio) {
         showAlert('error', 'Harap lengkapi semua data yang wajib diisi.');
         return;
       }
 
-      // Extract VP and price from selected diamond option
-      const vpAmount = diamondRadio.getAttribute('data-vp');
-      const pricePerItem = parseInt(diamondRadio.getAttribute('data-price'));
+      const vpAmount = parseInt(vpRadio.getAttribute('data-vp'));
+      const pricePerItem = parseInt(vpRadio.getAttribute('data-price'));
       const totalItems = parseInt(jumlah);
       const totalPrice = pricePerItem * totalItems;
       const totalVP = vpAmount * totalItems;
       
-      // Format price to Indonesian Rupiah
       const formattedPrice = new Intl.NumberFormat('id-ID', {
         style: 'currency',
         currency: 'IDR'
@@ -554,7 +542,7 @@
           <h3 style="color:var(--primary); border-bottom:1px solid rgba(255,215,0,0.3); padding-bottom:10px; margin-bottom:15px;">Ringkasan Pesanan</h3>
           <p><strong>Game:</strong> Valorant</p>
           <p><strong>Riot ID:</strong> ${id}</p>
-          <p><strong>Paket VP:</strong> ${vpAmount} VP (${diamondRadio.value})</p>
+          <p><strong>Paket VP:</strong> ${vpAmount} VP (${vpRadio.value})</p>
           <p><strong>Jumlah Pembelian:</strong> ${jumlah}x</p>
           <p><strong>Total VP:</strong> ${totalVP} VP</p>
           <p><strong>Total Harga:</strong> ${formattedPrice}</p>
@@ -572,7 +560,6 @@
       const modal = document.createElement('div');
       modal.className = 'modal-overlay';
       
-      // Format price to Indonesian Rupiah
       const formattedPrice = new Intl.NumberFormat('id-ID', {
         style: 'currency',
         currency: 'IDR'
@@ -605,7 +592,6 @@
       
       document.body.appendChild(modal);
       
-      // Start countdown
       let timeLeft = 30;
       const countdownElement = modal.querySelector('#countdown');
       const countdownInterval = setInterval(() => {
@@ -621,11 +607,8 @@
     }
     
     function processPayment() {
-      // In a real application, this would redirect to payment gateway
-      // For demo purposes, we'll show a success message
       showAlert('success', 'Pembayaran berhasil diproses! VP akan ditambahkan ke akun Anda dalam 1-5 menit. Terima kasih!');
       
-      // Remove any existing modals
       const modal = document.querySelector('.modal-overlay');
       if (modal) modal.remove();
     }
@@ -676,7 +659,6 @@
       }
     }
 
-    // Add animation for form elements
     document.addEventListener('DOMContentLoaded', () => {
       const formGroups = document.querySelectorAll('.form-group');
       
