@@ -153,6 +153,14 @@
       position: relative;
       display: inline-block;
       width: 100%;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section-title.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .section-title::after {
@@ -160,11 +168,17 @@
       position: absolute;
       bottom: -15px;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) scaleX(0);
       width: 100px;
       height: 4px;
       background: var(--primary);
       border-radius: 2px;
+      transition: transform 0.8s ease 0.3s;
+      transform-origin: left center;
+    }
+
+    .section-title.animate::after {
+      transform: translateX(-50%) scaleX(1);
     }
 
     .section-subtitle {
@@ -173,6 +187,14 @@
       max-width: 700px;
       margin: 0 auto 40px;
       font-size: 1.1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+    }
+
+    .section-subtitle.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .btn {
@@ -264,52 +286,44 @@
       padding: 0 20px;
     }
 
-.logo-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Mengurangi jarak antara logo dan teks */
-  position: relative;
-}
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+    }
 
-.logo-f {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  object-fit: contain;
-  border: 2px solid var(--primary);
-  padding: 3px;
-  background: rgba(0, 0, 0, 0.7);
-  transition: var(--transition);
+    .logo-f {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      object-fit: contain;
+      border: 2px solid var(--primary);
+      padding: 3px;
+      background: rgba(0, 0, 0, 0.7);
+      transition: var(--transition);
       animation: fadeInScale 0.8s ease-out forwards;
-    opacity: 0;
-    transform: scale(0.8);
-}
-
+      opacity: 0;
+      transform: scale(0.8);
+    }
 
     .logo-f:hover {
       transform: scale(1.05);
       filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
     }
 
-.logo-text {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--primary);
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-  line-height: 1; /* Memastikan teks tidak memiliki line-height ekstra */
-  margin-top: -3px; /* Sedikit adjustment untuk alignment vertikal */
+    .logo-text {
       position: relative;
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--primary);
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 2px solid var(--primary);
-    width: 0;
-    animation: typing 1.5s steps(9) 0.5s forwards, blink-caret 0.75s step-end 5;
-
-}
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid var(--primary);
+      width: 0;
+      animation: typing 1.5s steps(9) 0.5s forwards, blink-caret 0.75s step-end 5;
+    }
 
     .header-actions {
       display: flex;
@@ -434,12 +448,28 @@
       margin-bottom: 20px;
       color: var(--primary);
       text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .hero-title.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .hero-subtitle {
       font-size: 1.3rem;
       color: var(--text-secondary);
       margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+    }
+
+    .hero-subtitle.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .hero-buttons {
@@ -593,6 +623,14 @@
       transition: var(--transition);
       box-shadow: var(--box-shadow);
       border: 2px solid transparent;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease, var(--transition);
+    }
+
+    .feature-card.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .feature-card:hover {
@@ -639,6 +677,14 @@
       text-decoration: none;
       border: 2px solid transparent;
       position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease, var(--transition);
+    }
+
+    .game-card.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .game-card:hover {
@@ -752,6 +798,14 @@
       border-top: 3px solid var(--primary);
       transition: var(--transition);
       position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease, var(--transition);
+    }
+
+    .testimonial-card.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .testimonial-card:hover {
@@ -823,6 +877,14 @@
       overflow: hidden;
       background: var(--card-bg);
       box-shadow: var(--box-shadow);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .faq-item.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .faq-question {
@@ -879,6 +941,14 @@
       font-size: 2.5rem;
       margin-bottom: 20px;
       color: var(--primary);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .cta-title.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .cta-description {
@@ -886,6 +956,14 @@
       color: var(--text-secondary);
       max-width: 700px;
       margin: 0 auto 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+    }
+
+    .cta-description.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Payment Methods */
@@ -911,6 +989,14 @@
       background: white;
       padding: 5px;
       border-radius: 5px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease, var(--transition);
+    }
+
+    .payment-method.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .payment-method:hover {
@@ -1217,6 +1303,14 @@
       max-width: 300px;
       position: relative;
       overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease, var(--transition);
+    }
+
+    .tier-card.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .tier-card:hover {
@@ -1564,25 +1658,45 @@
         width: 60px;
         height: 40px;
       }
-
     }
 
-      @keyframes fadeInScale {
-    to {
-      opacity: 1;
-      transform: scale(1);
+    /* Animation Keyframes */
+    @keyframes fadeInScale {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
-  }
-  
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-  }
-  
-  @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: var(--primary) }
-  }
+    
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--primary) }
+    }
+
+    @keyframes slideInFromBottom {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes underlineExpand {
+      from {
+        transform: translateX(-50%) scaleX(0);
+      }
+      to {
+        transform: translateX(-50%) scaleX(1);
+      }
+    }
   </style>
 </head>
 
@@ -2182,7 +2296,7 @@
       },
       navigation: {
         nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
+        prevEl: ".swiper-button-next",
       },
       a11y: {
         prevSlideMessage: 'Previous slide',
@@ -2350,134 +2464,149 @@
       }
       
       if (password.length < 8) {
-          showNotification("Password harus minimal 8 karakter", "error");
-          return;
-        }
-        
-        const message = isRegister ? "Pendaftaran berhasil!" : "Login berhasil!";
-        showNotification(message);
-        
-        // Simulate API call
-        setTimeout(() => {
-          closeModal();
-          authForm.reset();
-        }, 1500);
-      });
+        showNotification("Password harus minimal 8 karakter", "error");
+        return;
+      }
+      
+      const message = isRegister ? "Pendaftaran berhasil!" : "Login berhasil!";
+      showNotification(message);
+      
+      // Simulate API call
+      setTimeout(() => {
+        closeModal();
+        authForm.reset();
+      }, 1500);
+    });
 
-      // Forgot password form
-      forgotPasswordForm.addEventListener("submit", function(e) {
-        e.preventDefault();
-        
-        const email = document.getElementById('forgotEmail').value;
-        
-        if (!email.includes('@') || !email.includes('.')) {
-          showNotification("Email tidak valid", "error");
-          return;
-        }
-        
-        showNotification("Link reset password telah dikirim ke email Anda", "info");
-        
-        setTimeout(() => {
-          closeModal();
-          forgotPasswordForm.reset();
-          openLoginModal();
-        }, 2000);
-      });
+    // Forgot password form
+    forgotPasswordForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('forgotEmail').value;
+      
+      if (!email.includes('@') || !email.includes('.')) {
+        showNotification("Email tidak valid", "error");
+        return;
+      }
+      
+      showNotification("Link reset password telah dikirim ke email Anda", "info");
+      
+      setTimeout(() => {
+        closeModal();
+        forgotPasswordForm.reset();
+        openLoginModal();
+      }, 2000);
+    });
 
-      // FAQ accordion
-      document.querySelectorAll('.faq-question').forEach(question => {
-        question.addEventListener('click', function() {
-          const answer = this.nextElementSibling;
-          const isActive = this.classList.contains('active');
-          
-          // Close all other items
-          document.querySelectorAll('.faq-question').forEach(q => {
-            if (q !== this) {
-              q.classList.remove('active');
-              q.nextElementSibling.classList.remove('show');
-            }
-          });
-          
-          // Toggle current item
-          if (isActive) {
-            this.classList.remove('active');
-            answer.classList.remove('show');
-          } else {
-            this.classList.add('active');
-            answer.classList.add('show');
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', function() {
+        const answer = this.nextElementSibling;
+        const isActive = this.classList.contains('active');
+        
+        // Close all other items
+        document.querySelectorAll('.faq-question').forEach(q => {
+          if (q !== this) {
+            q.classList.remove('active');
+            q.nextElementSibling.classList.remove('show');
           }
         });
-      });
-
-      // Animate numbers with improved performance
-      function animateValue(id, start, end, duration) {
-        const obj = document.getElementById(id);
-        let startTimestamp = null;
         
-        const step = (timestamp) => {
-          if (!startTimestamp) startTimestamp = timestamp;
-          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-          const value = Math.floor(progress * (end - start) + start);
-          obj.innerHTML = value.toLocaleString() + "+";
-          
-          if (progress < 1) {
-            window.requestAnimationFrame(step);
+        // Toggle current item
+        if (isActive) {
+          this.classList.remove('active');
+          answer.classList.remove('show');
+        } else {
+          this.classList.add('active');
+          answer.classList.add('show');
+        }
+      });
+    });
+
+    // Animate numbers with improved performance
+    function animateValue(id, start, end, duration) {
+      const obj = document.getElementById(id);
+      let startTimestamp = null;
+      
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const value = Math.floor(progress * (end - start) + start);
+        obj.innerHTML = value.toLocaleString() + "+";
+        
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      
+      window.requestAnimationFrame(step);
+    }
+
+    // Intersection Observer for animations
+    const animateOnScroll = function() {
+      const elements = document.querySelectorAll('.section-title, .section-subtitle, .hero-title, .hero-subtitle, .feature-card, .game-card, .testimonial-card, .faq-item, .payment-method, .tier-card');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
           }
-        };
-        
-        window.requestAnimationFrame(step);
-      }
-
-      // Start number animations when page loads
-      document.addEventListener('DOMContentLoaded', function() {
-        animateValue('customerCount', 0, 10000, 2000);
-        animateValue('transactionCount', 0, 50000, 2500);
-        animateValue('gameCount', 0, 50, 1500);
+        });
+      }, {
+        threshold: 0.1
       });
+      
+      elements.forEach(element => {
+        observer.observe(element);
+      });
+    };
 
-      // Reset animation saat halaman dimuat ulang
-document.addEventListener('DOMContentLoaded', function() {
-  const logoText = document.querySelector('.logo-text');
-  const logoImg = document.querySelector('.logo-f');
-  
-  // Reset animasi
-  logoText.style.animation = 'none';
-  logoText.style.width = '0';
-  logoText.style.borderRight = '2px solid var(--primary)';
-  logoImg.style.animation = 'none';
-  logoImg.style.opacity = '0';
-  logoImg.style.transform = 'scale(0.8)';
-  
-  // Trigger reflow
-  void logoText.offsetWidth;
-  void logoImg.offsetWidth;
-  
-  // Jalankan animasi
-  logoText.style.animation = 'typing 1.5s steps(9) 0.5s forwards, blink-caret 0.75s step-end 5';
-  logoImg.style.animation = 'fadeInScale 0.8s ease-out forwards';
-});
+    // Start animations when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      animateValue('customerCount', 0, 10000, 2000);
+      animateValue('transactionCount', 0, 50000, 2500);
+      animateValue('gameCount', 0, 50, 1500);
+      
+      // Reset logo animations
+      const logoText = document.querySelector('.logo-text');
+      const logoImg = document.querySelector('.logo-f');
+      
+      logoText.style.animation = 'none';
+      logoText.style.width = '0';
+      logoText.style.borderRight = '2px solid var(--primary)';
+      logoImg.style.animation = 'none';
+      logoImg.style.opacity = '0';
+      logoImg.style.transform = 'scale(0.8)';
+      
+      void logoText.offsetWidth;
+      void logoImg.offsetWidth;
+      
+      logoText.style.animation = 'typing 1.5s steps(9) 0.5s forwards, blink-caret 0.75s step-end 5';
+      logoImg.style.animation = 'fadeInScale 0.8s ease-out forwards';
+      
+      // Initialize scroll animations
+      animateOnScroll();
+    });
 
-// Jika ingin animasi berulang saat hover (opsional)
-document.querySelector('.logo-wrapper').addEventListener('mouseenter', function() {
-  const logoText = this.querySelector('.logo-text');
-  const logoImg = this.querySelector('.logo-f');
-  
-  // Reset animasi
-  logoText.style.animation = 'none';
-  logoText.style.width = '0';
-  logoText.style.borderRight = '2px solid var(--primary)';
-  logoImg.style.animation = 'none';
-  logoImg.style.opacity = '0';
-  logoImg.style.transform = 'scale(0.8)';
-  
-  // Trigger reflow
-  void logoText.offsetWidth;
-  void logoImg.offsetWidth;
-  
-  // Jalankan animasi
-  logoText.style.animation = 'typing 1.5s steps(9) 0.5s forwards, blink-caret 0.75s step-end 5';
-  logoImg.style.animation = 'fadeInScale 0.8s ease-out forwards';
-});
+    // Re-animate logo on hover
+    document.querySelector('.logo-wrapper').addEventListener('mouseenter', function() {
+      const logoText = this.querySelector('.logo-text');
+      const logoImg = this.querySelector('.logo-f');
+      
+      logoText.style.animation = 'none';
+      logoText.style.width = '0';
+      logoText.style.borderRight = '2px solid var(--primary)';
+      logoImg.style.animation = 'none';
+      logoImg.style.opacity = '0';
+      logoImg.style.transform = 'scale(0.8)';
+      
+      void logoText.offsetWidth;
+      void logoImg.offsetWidth;
+      
+      logoText.style.animation = 'typing 1.5s steps(9) 0.5s forwards, blink-caret 0.75s step-end 5';
+      logoImg.style.animation = 'fadeInScale 0.8s ease-out forwards';
+    });
   </script>
 </body>
 </html>
