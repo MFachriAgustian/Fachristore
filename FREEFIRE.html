@@ -396,17 +396,6 @@
       position: relative;
     }
 
-    .close-modal {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
     .payment-instruction {
       margin-top: 20px;
       padding: 15px;
@@ -626,7 +615,6 @@
       
       modal.innerHTML = `
         <div class="modal-content">
-          <button class="close-modal" onclick="this.closest('.modal-overlay').remove()">&times;</button>
           ${message}
           
           <div class="payment-instruction">
